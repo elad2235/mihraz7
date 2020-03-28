@@ -75,11 +75,16 @@ WSGI_APPLICATION = 'mihraz7.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'djongo',
+        'CLIENT': {
+
+            'host':'mongodb+srv://mihraz7-admin:<mihraz7-admin>@mihraz7-ovzwu.mongodb.net/test?retryWrites=true&w=majority',
+            'username':'mihraz7-admin',
+            'password':'mihraz7-admin',
+            'authMechanism':'SCRAM-SHA-1'
+        }
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
