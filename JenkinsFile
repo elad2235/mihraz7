@@ -3,7 +3,7 @@ pipeline {
     stages {
 			stage('Setup Dependency') {
 				steps {
-					sh 'pip install -r --user requirements.txt'
+					sh 'pip install --user -r requirements.txt'
 				}
 			}
         }
