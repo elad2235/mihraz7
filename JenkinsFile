@@ -1,2 +1,10 @@
-test
-?
+pipeline {
+    agent { docker 'python:3-alpine' } 
+    stages {
+			stage('Setup Dependency') {
+				steps {
+					sh 'pip install requirements.txt'
+				}
+			}
+        }
+}
