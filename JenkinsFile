@@ -3,7 +3,7 @@ pipeline {
     stages {
 			stage('Setup Dependency') {
 				steps {
-					sh 'sudo -H pip install requirements.txt'
+					sh 'ls -l'
 				}
 			}
         }
