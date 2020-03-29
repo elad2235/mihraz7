@@ -9,6 +9,8 @@ pipeline {
     					}
 				}
 
+
+        },
 			stage('Run Tests') {
 				steps {
 					    withEnv(["HOME=${env.WORKSPACE}"]) {
@@ -16,5 +18,7 @@ pipeline {
     					}
 				}
 			}
-        }
+	}
+
+
 }
