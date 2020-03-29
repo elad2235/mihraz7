@@ -1,14 +1,16 @@
 import unittest
 
+class Testing(unittest.TestCase):
+    def test_string(self):
+        a = 'some'
+        b = 'some'
+        self.assertEqual(a, b)
 
-class TestGeneralLogic(unittest.TestCase):
-    def test_True(self):
-        self.assertEqual(True,True)
+    def test_boolean(self):
+        a = True
+        b = True
+        self.assertEqual(a, b)
 
-    def test_False(self):
-        self.assertEqual(False,False)
 
-    def test_TrueFalse(self):
-        self.assertNotEqual(True,False)
-
-    
+if __name__=='__main__':
+    unittest.main()
