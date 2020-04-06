@@ -10,6 +10,5 @@ def registerPage(request):
         if form.is_valid():
             form.save()
 
-
     context ={'form':form}
     return render(request, 'register/register.html',context)
