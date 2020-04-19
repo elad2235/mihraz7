@@ -12,3 +12,4 @@ def registerPage(request):
 
     context ={'form':form}
     return render(request, 'register/register.html',context)
+

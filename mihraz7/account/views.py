@@ -36,11 +36,11 @@ def login_user(request):
 			login(request,user)
 			form = AuthenticationForm()
 			context['form']=form
-			return render(request,'account/login_user.html',context)
+			return render(request,'account/homePage.html',context)
 		else:
 			form = AuthenticationForm()
 			context['form']=form
-			return render(request,'account/login_user.html',context)
+			return render(request,'account/login_user.html',context, status = 401)
 
 	else:
 		form = AuthenticationForm()
