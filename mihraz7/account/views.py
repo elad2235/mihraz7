@@ -19,6 +19,7 @@ def registration_view(request):
 			return redirect('')
 		else:
 			context['registration_form'] = form
+			
 	else: #GET request
 		form = RegistrationForm()
 		context['registration_form'] = form
@@ -33,6 +34,10 @@ def login_user(request):
 		if form.is_valid():
 			user = form.get_user()
 			login(request,user)
+			form = AuthenticationForm()
+			context['form']=form
+			return render(request,'account/login_user.html',context)
+		else:
 			form = AuthenticationForm()
 			context['form']=form
 			return render(request,'account/login_user.html',context)
