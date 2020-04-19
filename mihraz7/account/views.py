@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login
+from django.contrib.auth import login,logout
 
 from account.forms import RegistrationForm
 
@@ -47,3 +47,9 @@ def login_user(request):
 		context['form']=form
 		return render(request,'account/login_user.html',context)
 
+def homePage(request):
+	return render(request,'account/homePage.html',{})
+
+def logOut(request):
+	logout(request)
+	return render(request,'account/login_user.html',{})
