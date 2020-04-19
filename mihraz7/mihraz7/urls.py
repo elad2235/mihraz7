@@ -11,3 +11,7 @@ urlpatterns = [
     path('login/',include('account.urls')),
     path('account/',include('account.urls'))
 ]
+
+
+
+
