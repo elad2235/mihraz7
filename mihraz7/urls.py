@@ -9,5 +9,5 @@ from account.views import (
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/',include('register.urls')),
-    path('', views.homePage),
+    path('/', RedirectView.as_view(pattern_name='account:home'),
 ]
