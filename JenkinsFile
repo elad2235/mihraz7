@@ -14,7 +14,7 @@ pipeline {
 			stage('Build') {
 				steps {
 					    withEnv(["HOME=${env.WORKSPACE}"]) {
-					      sh "python mihraz7/manage.py runserver"
+					      sh "django-admin check --deploy --settings=production_settings"
     					}
 						
 				}
