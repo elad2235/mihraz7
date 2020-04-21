@@ -14,7 +14,7 @@ pipeline {
 			stage('Build') {
 				steps {
 					    withEnv(["HOME=${env.WORKSPACE}"]) {
-					      sh "python manage.py runserver"
+					      sh "python mihraz7/manage.py runserver"
     					}
 						
 				}
