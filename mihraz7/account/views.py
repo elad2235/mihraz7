@@ -38,7 +38,6 @@ def login_user(request):
 			context['form']=form
 			return render(request,'account/homePage.html',context)
 		else:
-			form = AuthenticationForm()
 			context['form']=form
 			return render(request,'account/login_user.html',context, status = 401)
 
