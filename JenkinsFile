@@ -11,14 +11,6 @@ pipeline {
 
 
         }
-			stage('Build') {
-				steps {
-					    withEnv(["HOME=${env.WORKSPACE}"]) {
-					      sh "django-admin check --deploy --settings=production_settings"
-    					}
-						
-				}
-			}
 			stage('Run Tests') {
 				steps {
 					    withEnv(["HOME=${env.WORKSPACE}"]) {
