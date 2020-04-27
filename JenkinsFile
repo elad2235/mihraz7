@@ -15,12 +15,14 @@ pipeline {
 				steps {
 					    withEnv(["HOME=${env.WORKSPACE}"]) {
 					      sh "python3 -m xmlrunner discover mihraz7/ -o ./test-reports/junit"
+						  sh "ls ./test-reports/junit/"
     					}
 						
 				}
 				post {
                 always {
 					withEnv(["HOME=${env.WORKSPACE}"]) {
+						sh "ls ./test-reports/junit/"
                     	junit './test-reports/junit/'
 					}
                 }
