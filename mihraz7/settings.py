@@ -130,5 +130,5 @@ STATIC_URL = '/static/'
 
 
 TEST_RUNNER = 'xmlrunner.extra.djangotestrunner.XMLTestRunner'
-TEST_OUTPUT_DIR = './test-reports/unittest'
-TEST_OUTPUT_FILE_NAME = 'unittest.xml'
+TEST_OUTPUT_DIR = './test-reports/junit'
+TEST_OUTPUT_FILE_NAME = '*.xml'

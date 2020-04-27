@@ -14,7 +14,7 @@ pipeline {
 			stage('Run Tests') {
 				steps {
 					    withEnv(["HOME=${env.WORKSPACE}"]) {
-					      sh "python3 -m xmlrunner discover mihraz7/ -o ./test-reports/junit"
+					      sh "python3 -m xmlrunner discover mihraz7/ -o ./test-reports/junit/"
     					}
 						
 				}
@@ -22,7 +22,7 @@ pipeline {
                 always {
 					withEnv(["HOME=${env.WORKSPACE}"]) {
 
-                    	junit './test-reports/junit/*.xml'
+                    	junit 'test-reports/junit/*.xml'
 					}
                 }
             }
