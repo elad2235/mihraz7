@@ -24,7 +24,7 @@ pipeline {
 
 	post {
 		always {
-			junit './test-reports/'
+			junit './mihraz7/test-reports/junit'
             echo 'Finishing up'
             deleteDir() /* clean up our workspace */
         }
