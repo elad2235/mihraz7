@@ -59,6 +59,6 @@ Twisted==17.9.0
 ufw==0.36
 unattended-upgrades==0.1
 unittest-xml-reporting==3.0.2
-urllib3==1.22
+urllib3==1.24.2
 xmlrunner==1.7.7
 zope.interface==4.3.2
