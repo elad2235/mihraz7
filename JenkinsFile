@@ -4,7 +4,7 @@ pipeline {
 			stage('Setup Dependency') {
 				steps {
 					    withEnv(["HOME=${env.WORKSPACE}"]) {
-					      sh "python -m xmlrunner discover -t ./mihraz7 -o ./test-reports/junit"
+					      sh "python -m xmlrunner discover mihraz7/ -o ./test-reports/junit"
 
     					}
 				}
