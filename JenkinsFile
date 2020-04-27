@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker 'python:3-alpine' } 
+    agent { docker 'python:3-alpine --dns 8.8.8.8' } 
     stages {
 			stage('Setup Dependency') {
 				steps {
