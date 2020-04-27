@@ -21,7 +21,7 @@ pipeline {
 				post {
                 always {
 					withEnv(["HOME=${env.WORKSPACE}"]) {
-                    	junit './test-reports/junit/*.xml'
+                    	junit './test-reports/junit/'
 					}
                 }
             }
