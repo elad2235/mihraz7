@@ -20,7 +20,9 @@ pipeline {
 				}
 				post {
                 always {
-                    junit './test-reports/junit/*.xml'
+					withEnv(["HOME=${env.WORKSPACE}"]) {
+                    	junit './test-reports/junit/*.xml'
+					}
                 }
             }
 			}
