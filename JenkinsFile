@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker 'python:3.9-rc-alpine' } 
+    agent { docker 'mihraz7:env' } 
     stages {
 			stage('Setup Dependency') {
 				steps {
