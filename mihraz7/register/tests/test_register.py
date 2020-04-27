@@ -2,6 +2,7 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 import unittest
 import django
+import xmlrunner
 django.setup()
 from account.models import Account
 
@@ -45,3 +46,8 @@ class TestingRegister(unittest.TestCase):
         self.assertEqual(account_instance.phone, retrieve.phone)
         retrieve.delete()
 
+if __name__ == '__main__':
+    with open('test-reports/results.xml', 'wb') as output:
+        unittest.main(
+            testRunner=xmlrunner.XMLTestRunner(output=output),
+            failfast=False, buffer=False, catchbreak=False)

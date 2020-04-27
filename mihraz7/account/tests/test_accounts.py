@@ -2,6 +2,7 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 import unittest
 import django
+import xmlrunner
 django.setup()
 
 from django.test import Client
@@ -24,6 +25,11 @@ class TestingAccounts(unittest.TestCase):
         response = client.get('/account/homePage')
         self.assertEqual(response.status_code, 301)
 
+if __name__ == '__main__':
+    with open('test-reports/results.xml', 'wb') as output:
+        unittest.main(
+            testRunner=xmlrunner.XMLTestRunner(output=output),
+            failfast=False, buffer=False, catchbreak=False)
 
 # Admin user for testing  
 # TestMe
