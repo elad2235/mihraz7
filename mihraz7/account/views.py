@@ -25,7 +25,6 @@ def registration_view(request):
 		context['registration_form'] = form
 	return render(request, 'register/register.html', context)
 
-
 def login_user(request):
 	context ={}
 
