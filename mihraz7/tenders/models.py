@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Tender(models.Model):
     tender_name = models.CharField(max_length=50)
     tender_id = models.CharField(max_length=50)
