@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'account',
     'register',
     'tenders',
-    'suppliers'
+    'suppliers',
+    'tendersOffers'
 ]
 
 

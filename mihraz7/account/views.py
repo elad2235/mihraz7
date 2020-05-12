@@ -3,6 +3,8 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login,logout
 
+from tenders import views
+
 from account.forms import RegistrationForm
 
 
@@ -41,9 +43,12 @@ def login_user(request):
 			return render(request,'account/login_user.html',context, status = 401)
 
 	else:
-		form = AuthenticationForm()
-		context['form']=form
-		return render(request,'account/login_user.html',context)
+		if request.user.is_authenticated:
+			return render(request,'account/homePage.html',context)
+		else:
+			form = AuthenticationForm()
+			context['form']=form
+			return render(request,'account/login_user.html',context)
 
 def homePage(request):
 	return render(request,'account/homePage.html',{})
@@ -51,3 +56,6 @@ def homePage(request):
 def logOut(request):
 	logout(request)
 	return render(request,'account/login_user.html',{})
+
+def Tenders(request):
+	return views.Tenders(request)
