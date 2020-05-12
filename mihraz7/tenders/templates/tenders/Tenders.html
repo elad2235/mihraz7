@@ -63,40 +63,52 @@
               </thead>
               <tbody>
                 {% for tender in tenders %}
-                <div class="tender">
-                  <tr>
-                    <th scope="row">{{ tender.tender_name }}</th>
-                    <td>{{ tender.tender_id }}</td>
-                    <td>{{ tender.winner }}</td>
-                    <td>{{ tender.files }}</td>
-                    <td>{{ tender.online_payment }}</td>
-                    <td>{{ tender.url }}</td>
-                    <td>{{ tender.update_date }}</td>
-                    <td>{{ tender.end_date }}</td>
-                    <td>
-                      <div class="input-group mb-3">
-                        <input
-                          type="number"
-                          class="form-control"
-                          placeholder="My Offer"
-                          max="{{ tender.online_payment }}"
-                          aria-label="Recipient's username"
-                          aria-describedby="basic-addon2"
-                        />
-                      </div>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        class="btn btn-success fa fa-edit"
-                      ></button>
-                      <button
-                        type="button"
-                        class="btn btn-danger fa fa-trash"
-                      ></button>
-                    </td>
-                  </tr>
-                </div>
+                <form action="/tenders/RegisterOffer/" method="POST">
+                  {% csrf_token %}
+                  <div class="tender">
+                    <tr>
+                      <th scope="row">{{ tender.tender_name }}</th>
+                      <td>{{ tender.tender_id }}</td>
+                      <td>{{ tender.winner }}</td>
+                      <td>{{ tender.files }}</td>
+                      <td>{{ tender.online_payment }}</td>
+                      <td>{{ tender.url }}</td>
+                      <td>{{ tender.update_date }}</td>
+                      <td>{{ tender.end_date }}</td>
+                      <td>
+                        <div class="input-group mb-3">
+                          <input
+                            type="number"
+                            name="Offer"
+                            class="form-control"
+                            placeholder="My Offer"
+                            aria-label="Recipient's username"
+                            aria-describedby="basic-addon2"
+                          />
+                        </div>
+                      </td>
+                      <td>
+                        <button
+                          type="submit"
+                          name="tenId"
+                          class="btn btn-success fa fa-edit"
+                          value="{{ tender.tender_id }}"
+                        ></button>
+                        <button
+                          type="submit"
+                          name="tenIdDelete"
+                          class="btn btn-danger fa fa-trash"
+                          value="{{ tender.tender_id }}"
+                        ></button>
+                        <div class="tenderId">
+                          {% if tender.tender_id == tenderId %}
+                          <div class="message">{{ message }}</div>
+                          {% endif %}
+                        </div>
+                      </td>
+                    </tr>
+                  </div>
+                </form>
                 {% endfor %}
               </tbody>
             </table>

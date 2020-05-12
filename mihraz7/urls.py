@@ -11,4 +11,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/',include('register.urls')),
     path('',account_views.login_user),
+    path('tenders/',include('tenders.urls')),
 ]
