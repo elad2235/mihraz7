@@ -1,10 +1,15 @@
 from django.shortcuts import render
+from django.contrib.auth import login,logout
 
 from . import models
 from tendersOffers import views
 
 def homePage(request):
-	return render(request,'account/homePage.html',{})
+	context = {}
+	context['tenders'] = models.Tender.objects.all()
+	context['allTendersOffers'] = views.AllTendersOffers()
+	context['CurrentEmailProfile'] = request.user.email
+	return render(request,'account/homePage.html',context)
 
 def logOut(request):
 	logout(request)
@@ -31,3 +36,6 @@ def RegisterOffer(request):
 		}
 		views.DeleteOffer(request)
 	return render(request,'tenders/Tenders.html',all_tendersDic)
+
+def DeleteOffer(request):
+	views.DeleteOffer(request)

@@ -15,3 +15,6 @@ def RegisterOffer(request):
 
 def DeleteOffer(request):
     models.TenderOffer.objects.filter(tender_id=request.POST.get("tenIdDelete"),email=request.user.email).delete()
+
+def AllTendersOffers():
+    return models.TenderOffer.objects.all()

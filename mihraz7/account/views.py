@@ -4,7 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login,logout
 
 from tenders import views
-
+from tendersOffers import views as offersViews
 from account.forms import RegistrationForm
 
 
@@ -36,7 +36,9 @@ def login_user(request):
 			user = form.get_user()
 			login(request,user)
 			form = AuthenticationForm()
-			context['form']=form
+			context['form'] = form
+			context['allTendersOffers'] = offersViews.AllTendersOffers()
+			context['CurrentEmailProfile'] = request.user.email
 			return render(request,'account/homePage.html',context)
 		else:
 			context['form']=form
@@ -44,6 +46,8 @@ def login_user(request):
 
 	else:
 		if request.user.is_authenticated:
+			context['allTendersOffers']=offersViews.AllTendersOffers()
+			context['CurrentEmailProfile'] = request.user.email
 			return render(request,'account/homePage.html',context)
 		else:
 			form = AuthenticationForm()

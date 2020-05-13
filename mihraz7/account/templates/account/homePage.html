@@ -4,6 +4,12 @@
   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
   crossorigin="anonymous"
 />
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,6 +45,37 @@
       </div>
       <a class="nav-link" href="{% url 'account_logout' %}">Disconnect</a>
     </nav>
-    <h1>in homepage</h1>
+    <div class="allTendersOffers">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Tender Id</th>
+                  <th scope="col">My Offer</th>
+                </tr>
+              </thead>
+              <tbody>
+                <div class="CurrentEmailProfile">
+                  {% for offer in allTendersOffers %}
+                  <form>
+                    <div class="offer">
+                      {% if offer.email == CurrentEmailProfile %}
+                      <tr class="danger">
+                        <td>{{ offer.tender_id }}</td>
+                        <td>{{ offer.offer }}</td>
+                      </tr>
+                      {% endif %}
+                    </div>
+                  </form>
+                  {% endfor %}
+                </div>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
