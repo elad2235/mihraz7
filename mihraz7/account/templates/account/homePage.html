@@ -6,16 +6,58 @@
 />
 <link
   rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <style>
+      /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+      .row.content {
+        height: 450px;
+      }
+
+      /* Set gray background color and 100% height */
+      .sidenav {
+        padding-top: 20px;
+        background-color: #f1f1f1;
+        height: 100%;
+      }
+
+      /* Set black background color, white text and some padding */
+      footer {
+        background-color: #555;
+        color: white;
+        padding: 15px;
+      }
+      /* Set background Picture*/
+      .background-picture {
+        background-image: url("https://image.freepik.com/free-vector/background-elegant-white-texture_23-2148438405.jpg");
+        height: 100%;
+        opacity: 0.83;
+        /* Center and scale the image nicely */
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      /* On small screens, set height to 'auto' for sidenav and grid */
+      @media screen and (max-width: 767px) {
+        .sidenav {
+          height: auto;
+          padding: 15px;
+        }
+        .row.content {
+          height: auto;
+        }
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -39,43 +81,110 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'Tender' %}">Tenders</a>
+            <a class="nav-link" href="{% url 'Tender' %}">Open Tenders</a>
           </li>
         </ul>
       </div>
-      <a class="nav-link" href="{% url 'account_logout' %}">Disconnect</a>
+      <a class="nav-link" href="{% url 'account_logout' %}">logOut</a>
     </nav>
-    <div class="allTendersOffers">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">Tender Id</th>
-                  <th scope="col">My Offer</th>
-                </tr>
-              </thead>
-              <tbody>
-                <div class="CurrentEmailProfile">
-                  {% for offer in allTendersOffers %}
-                  <form>
-                    <div class="offer">
-                      {% if offer.email == CurrentEmailProfile %}
-                      <tr class="danger">
-                        <td>{{ offer.tender_id }}</td>
-                        <td>{{ offer.offer }}</td>
+    <div class="container-fluid text-center background-picture">
+      <div class="row content">
+        <div class="col-sm-2">
+          <div class="allTendersOffers">
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-2">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr class="active">
+                        <th scope="col">Tender Name</th>
+                        <th scope="col">My Offer</th>
                       </tr>
-                      {% endif %}
-                    </div>
-                  </form>
-                  {% endfor %}
+                    </thead>
+                    <tbody>
+                      <div class="CurrentEmailProfile">
+                        {% for offer in allTendersOffers %}
+                        <form>
+                          <div class="offer">
+                            {% if offer.email == CurrentEmailProfile %}
+                            <tr class="danger">
+                              <td>{{ offer.tender_name }}</td>
+                              <td>{{ offer.offer }}</td>
+                            </tr>
+                            {% endif %}
+                          </div>
+                        </form>
+                        {% endfor %}
+                      </div>
+                    </tbody>
+                  </table>
                 </div>
-              </tbody>
-            </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8 text-right hero-text">
+          <h1>ברוך הבא</h1>
+          <h4>
+            <p class="font-weight-bold">
+              <label for="formControlRange">
+                העיר באר שבע הינה המטרופולין הרביעי במדינת ישראל הנמצאת בעיצומו
+                של תנופת פיתוח אדירה בעשור האחרון</label
+              >
+            </p>
+            <p class="font-weight-bold">
+              <label for="formControlRange">
+                בעיר מתבצעים פרויקטים רבים בהיקף של כשלושה מיליארד שקל בשנה
+                שמטרתם לשפר את איכות החיים של תושבי העיר ולחזק את מעמדה של באר
+                שבע כמטרופולין וכבירת ההזדמנויות של ישראל</label
+              >
+            </p>
+            <p class="font-weight-bold">
+              <label for="formControlRange">
+                מידי שבוע נפתחים ונסגרים מכרזים של העירייה לפרויקטים השונים אשר
+                נותן הזדמנות גם קבלנים \בעלי עסקים\ יזמים בתחילת דרכם שיכולים
+                להגיש מועמדות לאחת מהפרויקטים הנתונים בעיר</label
+              >
+            </p>
+            <p class="font-weight-bold">
+              <label for="formControlRange">
+                ניהול המכרזים עד היום עובד בצורה מיושנת שבו נדרשים להגיש טפסים
+                רבים על מנת להירשם למכרז מסוים</label
+              >
+            </p>
+            <p class="font-weight-bold">
+              <label for="formControlRange">
+                דבר אשר מייצר תסכול מצד הקבלנים \בעלי עסקים\ יזמים אשר צריכים
+                למלא לפעמים מספר פעמים את אותם הטפסים</label
+              >
+            </p>
+            <p class="font-weight-bold">
+              <label for="formControlRange">
+                ובנוסף מייצר תסכול לפקיד אשר צריך לטפל בכל הטפסים הנכנסים ללא
+                דרך קלה לניהול ומעבר על ההרשמות</label
+              >
+            </p>
+            <p class="font-weight-bold">
+              <label for="formControlRange">
+                כאשר ניהול הטפסים יכול להעשות בצורה אוטומטית ומהירה ובכך לפנות
+                את הזמן של העובד או לפחות לזרז את תהליך מעבר על המועמדים</label
+              >
+            </p>
+          </h4>
+        </div>
+        <div class="col-sm-2">
+          <div class="well">
+            <p>ADS</p>
+          </div>
+          <div class="well">
+            <p>ADS</p>
           </div>
         </div>
       </div>
     </div>
+
+    <footer class="container-fluid text-center">
+      <p>Footer</p>
+    </footer>
   </body>
 </html>

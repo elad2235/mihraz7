@@ -3,6 +3,7 @@ from django.db import models
 class TenderOffer(models.Model):
     id                      = models.AutoField(primary_key=True)    
     tender_id               = models.CharField(max_length=50)
+    tender_name             = models.CharField(max_length=50,blank=True)
     first_name				= models.CharField(max_length=30)
     last_name 				= models.CharField(max_length=30)
     email 					= models.EmailField(verbose_name="email", max_length=60)

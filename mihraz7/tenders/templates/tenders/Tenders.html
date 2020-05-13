@@ -8,6 +8,7 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
+<style></style>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,11 +38,11 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'Tender' %}">Tenders</a>
+            <a class="nav-link" href="{% url 'Tender' %}">Open Tenders</a>
           </li>
         </ul>
       </div>
-      <a class="nav-link" href="{% url 'account_logout' %}">Disconnect</a>
+      <a class="nav-link" href="{% url 'account_logout' %}">logOut</a>
     </nav>
     <div class="tenders">
       <div class="container">
@@ -52,9 +53,8 @@
                 <tr>
                   <th scope="col">Tender Name</th>
                   <th scope="col">Tender Id</th>
-                  <th scope="col">Winner</th>
                   <th scope="col">Files</th>
-                  <th scope="col">Maximum Offer</th>
+                  <th scope="col">Online Payment</th>
                   <th scope="col">Url</th>
                   <th scope="col">Update Date</th>
                   <th scope="col">End Date</th>
@@ -70,10 +70,11 @@
                     <tr>
                       <th scope="row">{{ tender.tender_name }}</th>
                       <td>{{ tender.tender_id }}</td>
-                      <td>{{ tender.winner }}</td>
                       <td>{{ tender.files }}</td>
                       <td>{{ tender.online_payment }}</td>
-                      <td>{{ tender.url }}</td>
+                      <td>
+                        <a href="{{ tender.url }}" target="_blank">link</a>
+                      </td>
                       <td>{{ tender.update_date }}</td>
                       <td>{{ tender.end_date }}</td>
                       <td>

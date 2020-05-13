@@ -1,16 +1,16 @@
 from django.shortcuts import render
 from . import models
+from tenders import models as tenderModel
 
 def RegisterOffer(request):
     tenderId = request.POST.get("tenId")
-    print(tenderId)
+    tenderName = tenderModel.Tender.objects.get(tender_id=request.POST.get("tenId")).tender_name
     firstName = request.user.first_name
     lastName = request.user.last_name
     Email = request.user.email
     Offer = request.POST.get("Offer")
-    print(Offer)
     
-    newOffer = models.TenderOffer(tender_id=tenderId,first_name=firstName,last_name=lastName,email=Email,offer=Offer)
+    newOffer = models.TenderOffer(tender_id=tenderId,tender_name=tenderName,first_name=firstName,last_name=lastName,email=Email,offer=Offer)
     newOffer.save()
 
 def DeleteOffer(request):
