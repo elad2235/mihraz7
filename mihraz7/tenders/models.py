@@ -11,7 +11,6 @@ class Tender(models.Model):
     update_date = models.DateField(auto_now=False,auto_now_add=False,blank=True)
 
 
-
     def __str__(self):
         return self.tender_name
 
