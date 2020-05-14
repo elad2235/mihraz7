@@ -19,6 +19,13 @@ def Tenders(request):
 	all_tenders = models.Tender.objects.all()
 	return render(request,'tenders/Tenders.html',{ 'tenders': all_tenders, 'message':'','tenderId':None})
 
+def CloseTenders(request):
+	all_tenders = models.Tender.objects.all()
+	
+
+	return render(request,'tenders/CloseTenders.html',{ 'tenders': all_tenders, 'message':'','tenderId':None})
+
+
 def RegisterOffer(request):
 	all_tenders = models.Tender.objects.all()
 	if 'tenId' in request.POST:
