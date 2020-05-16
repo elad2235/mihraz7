@@ -7,6 +7,7 @@ django.setup()
 from suppliers.models import Supplier
 from django.test import Client
 
+
 class TestingSupplier(unittest.TestCase):
     
     def test_insert_supplier_name(self):
@@ -31,6 +32,23 @@ class TestingSupplier(unittest.TestCase):
         retrieve = Supplier.objects.get(Service='testing2')
         self.assertEqual(supplier_instance.Service, retrieve.Service)
         retrieve.delete()
+
+    def test_insert_supplier(self):
+        supplier_instance = Supplier.objects.create(Supplier_name='Test12', Supplier_id='1234', Service='testing1')
+        supplier_instance.save()
+        retrieve = Supplier.objects.get(Supplier_id='1234')
+        self.assertEqual(supplier_instance.Supplier_id, retrieve.Supplier_id)
+        retrieve.delete()
+
+    def test_remove_supplier(self):
+        supplier_instance = Supplier.objects.create(Supplier_name='Test12', Supplier_id='1234', Service='testing1')
+        supplier_instance.save()
+        supplier_instance.delete()
+        try:
+            retrieve = Supplier.objects.get(Supplier_id='1234')
+        except Supplier.DoesNotExist:
+            retrieve=None
+        self.assertEqual(None, retrieve)
 
 
 if __name__ == '__main__':

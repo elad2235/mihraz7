@@ -3,7 +3,6 @@ from account.forms import RegistrationForm
 
 
 def registerPage(request):
-
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():

@@ -58,6 +58,26 @@ class TestingTenderOffer(unittest.TestCase):
         retrieve.delete()
 
 
+
+    def test_insert_tender(self):
+        tenderoffer_instance = TenderOffer.objects.create(id=1, tender_id='750', tender_name='test', first_name='sean', last_name='sean', email='test@test.com', offer='100')
+        tenderoffer_instance.save()
+        retrieve = TenderOffer.objects.get(id=1)
+        self.assertEqual(tenderoffer_instance.id, retrieve.id)
+        retrieve.delete()
+
+    def test_remove_tender(self):
+        tenderoffer_instance = TenderOffer.objects.create(id=1, tender_id='750', tender_name='test', first_name='sean', last_name='sean', email='test@test.com', offer='100')
+        tenderoffer_instance.save()
+        tenderoffer_instance.delete()
+        try:
+            retrieve = TenderOffer.objects.get(id=1)
+
+        except TenderOffer.DoesNotExist:
+            retrieve = None
+        self.assertEqual(None, retrieve)
+
+
 if __name__ == '__main__':
     with open('test-reports/results.xml', 'wb') as output:
         unittest.main(
