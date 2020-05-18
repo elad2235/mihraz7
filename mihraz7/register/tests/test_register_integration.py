@@ -32,11 +32,3 @@ class TestingAccountsIntegration(unittest.TestCase):
         self.assertEqual(response.status_code, 301)
         retrieve.delete()
 
-
-
-    # def test_connect_disconnect(self):
-    #     client = Client()
-    #     client.post('/account/login_user/',{'username':'TestMe','password':'1342'},follow=True)
-    #     client.get('/account/logOut')
-    #     response = client.get('/account/homePage')
-    #     self.assertEqual(response.status_code, 301)

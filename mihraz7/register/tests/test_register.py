@@ -5,6 +5,8 @@ import django
 import xmlrunner
 django.setup()
 from account.models import Account
+from register.views import registerPage
+from django.urls import reverse, resolve
 
 class TestingRegister(unittest.TestCase):
     
@@ -45,6 +47,10 @@ class TestingRegister(unittest.TestCase):
         retrieve = Account.objects.get(username='test_')
         self.assertEqual(account_instance.phone, retrieve.phone)
         retrieve.delete()
+
+    def test_url_register(self):
+        url = reverse('register')
+        self.assertEqual(resolve(url).func,registerPage)
 
 if __name__ == '__main__':
     with open('test-reports/results.xml', 'wb') as output:

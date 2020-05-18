@@ -6,6 +6,8 @@ import xmlrunner
 django.setup()
 from account.models import Account
 from django.test import Client
+from account.views import login_user,registration_view,login_user,homePage,logOut,Tenders
+from django.urls import reverse, resolve
 
 class TestingAccounts(unittest.TestCase):
     def test_admin_login(self):
@@ -33,7 +35,6 @@ class TestingAccounts(unittest.TestCase):
         client.get('/account/logOut')
         response = client.get('/account/homePage')
         self.assertEqual(response.status_code, 301)
-
 
 
     def test_user_disconnect(self):
@@ -80,6 +81,23 @@ class TestingAccounts(unittest.TestCase):
         self.assertEqual(False, retrieve.is_admin)
         retrieve.delete()
 
+
+    def test_url_login(self):
+        url = reverse('login')
+        self.assertEqual(resolve(url).func,login_user)
+
+    def test_url_homepage(self):
+        url = reverse('homePage')
+        self.assertEqual(resolve(url).url_name,'homePage')
+
+    def test_url_account_logout(self):
+        url = reverse('account_logout')
+        self.assertEqual(resolve(url).url_name,'account_logout')
+
+    def test_url_tender(self):
+        url = reverse('Tender')
+        self.assertEqual(resolve(url).url_name,'Tender') 
+
 if __name__ == '__main__':
     with open('test-reports/results.xml', 'wb') as output:
         unittest.main(
@@ -93,3 +111,13 @@ if __name__ == '__main__':
 # 123321
 # 1342
 # 1342
+
+
+
+# urlpatterns = [
+#     path('login_user/',views.login_user),
+#     path('homePage/',views.homePage,name='homePage'),
+#     path('logOut/',views.logOut,name="account_logout"),
+#     path('', views.login_user, name='home'),
+#     path('Tenders/',views.Tenders,name="Tender"),
+# ]

@@ -57,8 +57,6 @@ class TestingTenderOffer(unittest.TestCase):
         self.assertEqual(tenderoffer_instance.email, retrieve.email)
         retrieve.delete()
 
-
-
     def test_insert_tender(self):
         tenderoffer_instance = TenderOffer.objects.create(id=1, tender_id='750', tender_name='test', first_name='sean', last_name='sean', email='test@test.com', offer='100')
         tenderoffer_instance.save()
