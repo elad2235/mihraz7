@@ -31,4 +31,4 @@ class TestingAccountsIntegration(unittest.TestCase):
         response = client.get('/account/homePage')
         self.assertEqual(response.status_code, 301)
         retrieve.delete()
-
+        
