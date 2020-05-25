@@ -8,6 +8,12 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
+<link
+  rel="stylesheet"
+  href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"
+/>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <style></style>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,12 +55,11 @@
       </div>
       <a class="nav-link" href="{% url 'account_logout' %}">logOut</a>
     </nav>
-    <br /><br />
     <div class="tenders">
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <table class="table table-bordered">
+            <table id="1234" class="table table-bordered">
               <thead>
                 <tr>
                   <th scope="col">Tender Name</th>
@@ -121,6 +126,42 @@
                 </form>
                 {% endfor %}
               </tbody>
+              <script>
+                $(document).ready(function () {
+                  $("#1234").DataTable({
+                    initComplete: function () {
+                      this.api()
+                        .columns()
+                        .every(function () {
+                          var column = this;
+                          var select = $(
+                            '<select><option value=""></option></select>'
+                          )
+                            .appendTo($(column.footer()).empty())
+                            .on("change", function () {
+                              var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                              );
+
+                              column
+                                .search(val ? "^" + val + "$" : "", true, false)
+                                .draw();
+                            });
+
+                          column
+                            .data()
+                            .unique()
+                            .sort()
+                            .each(function (d, j) {
+                              select.append(
+                                '<option value="' + d + '">' + d + "</option>"
+                              );
+                            });
+                        });
+                    },
+                  });
+                });
+              </script>
             </table>
           </div>
         </div>
