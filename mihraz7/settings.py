@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'register',
     'tenders',
     'suppliers',
-    'tendersOffers'
+    'tendersOffers',
+    'contact'
 ]
 
 

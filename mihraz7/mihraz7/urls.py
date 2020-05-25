@@ -12,7 +12,8 @@ urlpatterns = [
     path('login/',include('account.urls')),
     path('account/',include('account.urls')),
     path('tenders/',include('tenders.urls')),
-    path('',account_views.login_user)
+    path('',account_views.login_user),
+    path('contact/', include('contact.urls')),
 ]
 
 
