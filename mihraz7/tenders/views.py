@@ -21,10 +21,7 @@ def Tenders(request):
 
 def CloseTenders(request):
 	all_tenders = models.Tender.objects.all()
-	
-
 	return render(request,'tenders/CloseTenders.html',{ 'tenders': all_tenders, 'message':'','tenderId':None})
-
 
 def RegisterOffer(request):
 	all_tenders = models.Tender.objects.all()
@@ -46,3 +43,4 @@ def RegisterOffer(request):
 
 def DeleteOffer(request):
 	views.DeleteOffer(request)
+

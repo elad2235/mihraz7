@@ -1,0 +1,92 @@
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+  crossorigin="anonymous"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<style></style>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suppliers page</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Mihraz-7</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'homePage' %}"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'Tender' %}">Open Tenders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'CloseTenders' %}">Close Tenders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'supp_page' %}">Suppliers</a>
+          </li>
+        </ul>
+      </div>
+      <a class="nav-link" href="{% url 'account_logout' %}">logOut</a>
+    </nav>
+   <br><br>
+   <h1>רשימת ספקים</h1>
+   <p>עיריית באר שבע (להלן: "העירייה") פרסמה הזמנה להגיש מועמדות להיכלל בספר הספקים והקבלנים שלה בו ייעשה שימוש, לפי העניין, בהתאם להוראות סעיף 8 לתקנות העיריות (מכרזים), תשמ"ח – 1987 (להלן: "התקנות") לצורך השתתפות במכרזי זוטא ו/או לצורך השתתפות בנוהל הצעות מחיר שעורכת העירייה במקרים של פטור ממכרז לפי תקנה 3 (3) לתקנות.</p>
+   <p>מצ"ב רשימת הספקים/הקבלנים שהגישו מועמדות ובקשתם התקבלה.</p>
+   <p>יובהר, כי אין בהקמת המאגר התחייבות של העירייה לבצע פנייה לקבלת הצעות להזמנת עבודה, מוצר ו/או שירות.</p>
+   <br><br>
+   <div class="Suppliers">
+       <div class="container">
+           <div class="row">
+               <div class="col-12">
+                   <table class="table table-bordered">
+                       <thead>
+                           <tr>
+                               <th scope="col">Supplier name</th>
+                               <th scope="col">Supplier id</th>
+                               <th scope="col">Service</th>                               
+                            </tr>
+                        </thead>
+                          <tbody>
+                               {% for supplier in suppliers %}
+                               
+                              <form action="/suppliers/supp_page/" method="POST">
+                                 {% csrf_token %}
+                                 <div class="supplier">
+                                   <tr>
+                                     <th scope="row">{{ supplier.Supplier_name }}</th>
+                                     <td>{{ supplier.Supplier_id }}</td>
+                                     <td>{{ supplier.Service }}</td>
+                                  </tr>
+                                 </div>
+                              </form>
+                               {% endfor %}
+                          </tbody>
+                   </table>
+               </div>
+           </div>
+       </div>
+   </div>
+  </body>
+</html>
