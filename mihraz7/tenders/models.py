@@ -9,7 +9,7 @@ class Tender(models.Model):
     url = models.CharField(max_length=100, blank=True)
     end_date = models.DateField(auto_now=False,auto_now_add=False,blank=True)
     update_date = models.DateField(auto_now=False,auto_now_add=False,blank=True)
-
+    Count_of_applied = models.IntegerField(blank=True)
 
     def __str__(self):
         return self.tender_name

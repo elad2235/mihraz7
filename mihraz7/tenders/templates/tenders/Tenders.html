@@ -41,13 +41,15 @@
             <a class="nav-link" href="{% url 'Tender' %}">Open Tenders</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'CloseTenders' %}">Close Tenders</a>
+            <a class="nav-link" href="{% url 'CloseTenders' %}"
+              >Close Tenders</a
+            >
           </li>
         </ul>
       </div>
       <a class="nav-link" href="{% url 'account_logout' %}">logOut</a>
     </nav>
-   <br><br>
+    <br /><br />
     <div class="tenders">
       <div class="container">
         <div class="row">
@@ -64,6 +66,7 @@
                   <th scope="col">End Date</th>
                   <th scope="col">New Offer</th>
                   <th scope="col">_________________</th>
+                  <th scope="col">Count of applied</th>
                 </tr>
               </thead>
               <tbody>
@@ -112,6 +115,7 @@
                           {% endif %}
                         </div>
                       </td>
+                      <td>{{ tender.Count_of_applied }}</td>
                     </tr>
                   </div>
                 </form>
