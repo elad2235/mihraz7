@@ -62,3 +62,6 @@ def logOut(request):
 
 def Tenders(request):
 	return views.Tenders(request)
+	
+def MyTenders(request):
+	return views.MyTenders(request)

@@ -19,6 +19,27 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
     <style>
+
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: rgb(138, 135, 135);
+}
+#actived {
+  background-color: rgb(66, 66, 68);
+}
+
       /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
       .row.content {
         height: 450px;
@@ -76,7 +97,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'homePage' %}"
+            <a id = "actived" class="nav-link" href="{% url 'homePage' %}"
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
@@ -89,6 +110,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'supp_page' %}">Suppliers</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'my_tenders' %}">My tenders</a>
+          </li>
         </ul>
       </div>
       <a class="nav-link" href="{% url 'contact_us' %}">Contact us</a>
@@ -96,40 +120,7 @@
     </nav>
     <div class="container-fluid text-center background-picture">
       <div class="row content">
-        <div class="col-sm-2">
-          <div class="allTendersOffers">
-            <div class="container">
-              <div class="row">
-                <div class="col-xs-2">
-                  <table class="table table-bordered">
-                    <thead>
-                      <tr class="active">
-                        <th scope="col">Tender Name</th>
-                        <th scope="col">My Offer</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <div class="CurrentEmailProfile">
-                        {% for offer in allTendersOffers %}
-                        <form>
-                          <div class="offer">
-                            {% if offer.email == CurrentEmailProfile %}
-                            <tr class="danger">
-                              <td>{{ offer.tender_name }}</td>
-                              <td>{{ offer.offer }}</td>
-                            </tr>
-                            {% endif %}
-                          </div>
-                        </form>
-                        {% endfor %}
-                      </div>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      
         <div class="col-sm-8 text-right hero-text">
           <h1>ברוך הבא</h1>
           <h4>

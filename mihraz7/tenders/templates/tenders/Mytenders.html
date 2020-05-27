@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   
+
 <link
   rel="stylesheet"
   href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -9,7 +16,6 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
 <style>
-
 
 li {
   float: left;
@@ -31,12 +37,7 @@ li a:hover {
 }
 
 </style>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page</title>
+<title>My Tenders</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -63,13 +64,13 @@ li a:hover {
             <a class="nav-link" href="{% url 'Tender' %}">Open Tenders</a>
           </li>
           <li class="nav-item">
-            <a id = "actived" class="nav-link" href="{% url 'CloseTenders' %}">Close Tenders</a>
+            <a class="nav-link" href="{% url 'CloseTenders' %}">Close Tenders</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'supp_page' %}">Suppliers</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'my_tenders' %}">My tenders</a>
+            <a id = "actived" class="nav-link" href="{% url 'my_tenders' %}">My tenders</a>
           </li>
         </ul>
       </div>
@@ -81,33 +82,33 @@ li a:hover {
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <table class="table table-bordered">
+                   <table class="table table-bordered">
                         <thead>
-                            <tr>
+                            <tr class="active">
                                 <th scope="col">Tender Name</th>
-                                <th scope="col">Tender Id</th>
-                                <th scope="col">End Date</th>
-                                <th scope="col">Winner</th>
-                                
-                              </tr>
+                                <th scope="col">My Offer</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                {% for tender in tenders %}
-                                
-                                <form action="/tenders/CloseTenders/" method="POST">
-                                  {% csrf_token %}
-                                  <div class="tender">
-                                    {% if tender.winner != 'None' and tender.winner != NULL and tender.winner != ""  %}
-                                    <tr>
-                                      <th scope="row">{{ tender.tender_name }}</th>
-                                      <td>{{ tender.tender_id }}</td>
-                                      <td>{{ tender.end_date }}</td>
-                                      <td>{{ tender.winner }}</td>
-                                      
-                                      </tr>
+                              <div class="CurrentEmailProfile">
+                                {% for offer in allTendersOffers %}
+                                <form>
+                                  <div class="offer">
+                                    {% if offer.email == CurrentEmailProfile %}
+                                    <tr class="danger">
+                                      <td>{{ offer.tender_name }}</td>
+                                      <td>{{ offer.offer }}</td>
+                                    </tr>
+                                    {% endif %}
                                   </div>
-                                  </form>
-                                  {%endif%}
+                                </form>
                                 {% endfor %}
-
+                              </div>
                             </tbody>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+    </html>

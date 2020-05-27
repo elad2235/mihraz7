@@ -19,7 +19,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact us</title>
   </head>
-  <style>
+ <style>
+    li {
+      float: left;
+      }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover {
+      background-color: rgb(138, 135, 135);
+    }
+    #actived {
+      background-color: rgb(66, 66, 68);
+    }
     .jumbotron {
       background: #358CCE;
       color: #FFF;
@@ -79,9 +97,12 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'supp_page' %}">Suppliers</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'my_tenders' %}">My tenders</a>
+          </li>
         </ul>
       </div>
-      <a class="nav-link" href="{% url 'contact_us' %}">Contact us</a>
+      <a id="actived" class="nav-link" href="{% url 'contact_us' %}">Contact us</a>
       <a class="nav-link" href="{% url 'account_logout' %}">logOut</a>
     </nav>
     <div class="jumbotron jumbotron-sm">

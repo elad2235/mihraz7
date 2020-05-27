@@ -14,7 +14,29 @@
 />
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<style></style>
+<style>
+
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: rgb(138, 135, 135);
+}
+#actived {
+  background-color: rgb(66, 66, 68);
+}
+
+</style>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,13 +66,16 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'Tender' %}">Open Tenders</a>
+            <a id = "actived" class="nav-link" href="{% url 'Tender' %}">Open Tenders</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'CloseTenders' %}">Close Tenders</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'supp_page' %}">Suppliers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'my_tenders' %}">My tenders</a>
           </li>
         </ul>
       </div>
