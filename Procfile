@@ -1,1 +1,1 @@
-web: --log-file=- gunicorn mihraz7.wsgi:application
+web: gunicorn mihraz7.wsgi:application
