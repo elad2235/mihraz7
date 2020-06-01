@@ -28,22 +28,37 @@ def CloseTenders(request):
 	return render(request,'tenders/CloseTenders.html',{ 'tenders': all_tenders, 'message':'','tenderId':None})
 
 def RegisterOffer(request):
-	all_tenders = models.Tender.objects.all()
-	if 'tenId' in request.POST:
-		all_tendersDic = {
-			'tenderId':request.POST.get("tenId"),
-			'message':'Offer Accepted!',
-			'tenders': all_tenders
-		}
-		views.RegisterOffer(request)
-	else:
-		all_tendersDic = {
-			'tenderId':request.POST.get("tenIdDelete"),
-			'message':'Offer Deleted!',
-			'tenders': all_tenders
-		}
-		views.DeleteOffer(request)
-	return render(request,'tenders/Tenders.html',all_tendersDic)
+    all_tenders = models.Tender.objects.all()
+    if 'tenId' in request.POST:
+        if request.POST.get("Offer") is '':
+            all_tendersDic = {
+                'tenderId': request.POST.get("tenId"),
+                'message': 'Empty Offer!',
+                'tenders': all_tenders
+            }
+        else:
+            all_tendersDic = {
+                'tenderId': request.POST.get("tenId"),
+                'message': 'Offer Accepted!',
+                'tenders': all_tenders
+            }
+            offersViews.RegisterOffer(request)
+    else:
+        all_tendersDic = {
+            'tenderId': request.POST.get("tenIdDelete"),
+            'message': 'Offer Deleted!',
+            'tenders': all_tenders
+        }
+        offersViews.DeleteOffer(request)
+    return render(request, 'tenders/Tenders.html', all_tendersDic)
+
+def Search(request):
+    all_tendersDic = {
+        'tenderId': '',
+        'message': '',
+        'tenders': models.Tender.objects.filter(tender_id=request.POST.get("search"))
+    }
+    return render(request, 'tenders/Tenders.html', all_tendersDic)
 
 def DeleteOffer(request):
 	views.DeleteOffer(request)
