@@ -98,6 +98,8 @@ li a:hover {
       <div class="container">
         <div class="row">
           <div class="col-12">
+
+            
             <table id="1234" class="table table-bordered">
               <thead>
                 <tr>
@@ -110,17 +112,33 @@ li a:hover {
                   <th scope="col">End Date</th>
                   <th scope="col">New Offer</th>
                   <th scope="col">_________________</th>
-                  <th scope="col">_________________</th>
                   <th scope="col">Count of applied</th>
                 </tr>
               </thead>
               <tbody>
+
                 {% for tender in tenders %}
                 <form action="/tenders/RegisterOffer/" method="POST">
                   {% csrf_token %}
                   <div class="tender">
+
                     <tr>
-                      <th scope="row"><a href="{% url 'info' tender.tender_id %}">{{ tender.tender_name }}</a><th>
+                      <th scope="row">
+                        {% if is_ad == True %}
+                        
+                          {% if tender.tender_id == max_ten%}
+                          <a href="{% url 'info' tender.tender_id %}">{{ tender.tender_name }}</a>
+                          
+                            <img src="https://www.netclipart.com/pp/m/206-2060647_iphone-emojis-iphoneemoji-emojisticker-iphone-star-emoji-transparent.png" alt="max offers" width="40px" height="25px">
+                          {% elif tender.tender_id != max_ten%}
+                          <a href="{% url 'info' tender.tender_id %}">{{ tender.tender_name }}</a>
+                            {% endif %}
+                        {% elif is_ad == False %}
+                        <a href="{% url 'info' tender.tender_id %}">{{ tender.tender_name }}</a>
+
+                        {% endif %}
+                      </th>
+                        
                       <td>{{ tender.tender_id }}</td>
                       <td>{{ tender.files }}</td>
                       <td>{{ tender.online_payment }}</td>

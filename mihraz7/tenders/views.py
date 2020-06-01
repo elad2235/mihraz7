@@ -20,8 +20,17 @@ def logOut(request):
 	return render(request,'account/login_user.html',{})
 
 def Tenders(request):
-	all_tenders = models.Tender.objects.all()
-	return render(request,'tenders/Tenders.html',{ 'tenders': all_tenders, 'message':'','tenderId':None})
+
+    ad = request.user.is_admin
+    max=0
+    
+    all_tenders = models.Tender.objects.all()
+    for ten in all_tenders:
+        if ten.Count_of_applied > max:
+            max = ten.Count_of_applied
+            id = ten.tender_id
+    return render(request,'tenders/Tenders.html',{ 'tenders': all_tenders, 'message':'','tenderId':None, 'max_ten':id,'is_ad': ad })
+
 
 
 def TenderPage(request,id):
