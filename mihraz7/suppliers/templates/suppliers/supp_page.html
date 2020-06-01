@@ -10,6 +10,14 @@
 />
 <style>
 
+body {
+  background-image: url("https://image.freepik.com/free-vector/background-elegant-white-texture_23-2148438405.jpg");
+  height: 100%;
+  opacity: 0.83;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 li {
   float: left;
@@ -28,6 +36,19 @@ li a:hover {
 }
 #actived {
   background-color: rgb(66, 66, 68);
+}
+
+.container1 {
+  width: 75%;
+  position: relative;
+  left: 10%;
+}
+.headline{
+  position: relative;
+}
+
+p {
+  font-size: 20px;
 }
 
 </style>
@@ -77,10 +98,13 @@ li a:hover {
       <a class="nav-link" href="{% url 'account_logout' %}">logOut</a>
     </nav>
    <br><br>
-    <h1>רשימת ספקים</h1>
-   <p>עיריית באר שבע (להלן: "העירייה") פרסמה הזמנה להגיש מועמדות להיכלל בספר הספקים והקבלנים שלה בו ייעשה שימוש, לפי העניין, בהתאם להוראות סעיף 8 לתקנות העיריות (מכרזים), תשמ"ח – 1987 (להלן: "התקנות") לצורך השתתפות במכרזי זוטא ו/או לצורך השתתפות בנוהל הצעות מחיר שעורכת העירייה במקרים של פטור ממכרז לפי תקנה 3 (3) לתקנות.</p>
-   <p>מצ"ב רשימת הספקים/הקבלנים שהגישו מועמדות ובקשתם התקבלה.</p>
-   <p>יובהר, כי אין בהקמת המאגר התחייבות של העירייה לבצע פנייה לקבלת הצעות להזמנת עבודה, מוצר ו/או שירות.</p>
+   <div class = "container1">
+      <h1 class = "headline">Suppliers List</h1>
+      <br>
+      <p>Beersheba Municipality (hereinafter: "City Hall") has issued an invitation to apply for inclusion in its suppliers 'and contractors' book which will be used, as applicable, in accordance with the provisions of section 8 of the Municipal Regulations (Tenders), 1987 (hereinafter: "Regulations") for participation. In small tenders and / or for participation in a bid procedure conducted by the municipality in cases of exemption from tenders under Regulation 3 (3) of the Regulations.</p>
+      <p>Attached is a list of suppliers / contractors who applied for and accepted.</p>
+      <p>It should be clarified that the establishment of the municipality does not undertake to apply for job, product and / or service offers.</p>
+   </div>
    <br><br>
    <div class="Suppliers">
        <div class="container">
