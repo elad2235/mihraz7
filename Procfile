@@ -1,0 +1,1 @@
+web: sh -c 'cd ./mihraz7/ && gunicorn mihraz7.wsgi'
