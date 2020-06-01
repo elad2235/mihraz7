@@ -15,3 +15,13 @@ class Tender(models.Model):
     def __str__(self):
         return self.tender_name
 
+
+
+class Comment(models.Model):
+    comment_name = models.CharField(max_length=50)
+    comment_content = models.CharField(max_length=200)
+    tender_id = models.CharField(max_length=50,unique=False)
+
+    def __str__(self):
+        return self.comment_name + self.comment_content
+

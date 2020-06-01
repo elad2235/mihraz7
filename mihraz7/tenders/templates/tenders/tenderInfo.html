@@ -1,0 +1,193 @@
+
+
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+  crossorigin="anonymous"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"
+/>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<style>
+
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: rgb(138, 135, 135);
+}
+#actived {
+  background-color: rgb(66, 66, 68);
+}
+
+.search-container {
+  float: right;
+}
+
+</style>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Mihraz-7</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'homePage' %}"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a id = "actived" class="nav-link" href="{% url 'Tender' %}">Open Tenders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'CloseTenders' %}">Close Tenders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'supp_page' %}">Suppliers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'my_tenders' %}">My tenders</a>
+          </li>
+        </ul>
+      </div>
+      <a class="nav-link" href="{% url 'contact_us' %}">Contact us</a>
+      <a class="nav-link" href="{% url 'account_logout' %}">logOut</a>
+    </nav>
+    <br><br>
+
+    <div class="tenders">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <table id="1234" class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Tender Name</th>
+                  <th scope="col">Tender Id</th>
+                  <th scope="col">Files</th>
+                  <th scope="col">Online Payment</th>
+                  <th scope="col">Url</th>
+                  <th scope="col">Update Date</th>
+                  <th scope="col">End Date</th>
+                  <th scope="col">New Offer</th>
+                  <th scope="col">_________________</th>
+                  <th scope="col">_________________</th>
+                  <th scope="col">Count of applied</th>
+                </tr>
+              </thead>
+              <tbody>
+                <form action="/tenders/RegisterOffer/" method="POST">
+                  {% csrf_token %}
+                  <div class="tender">
+                    <tr>
+                      <th scope="row">{{ tender.tender_name }}<th>
+                      <td>{{ tender.tender_id }}</td>
+                      <td>{{ tender.files }}</td>
+                      <td>{{ tender.online_payment }}</td>
+                      <td>
+                        <a href="{{ tender.url }}" target="_blank">link</a>
+                      </td>
+                      <td>{{ tender.update_date }}</td>
+                      <td>{{ tender.end_date }}</td>
+                      <td>
+                        <div class="input-group mb-3">
+                          <input
+                            type="number"
+                            name="Offer"
+                            class="form-control"
+                            placeholder="My Offer"
+                            aria-label="Recipient's username"
+                            aria-describedby="basic-addon2"
+                          />
+                        </div>
+                      </td>
+                      <td>
+                        <button
+                          type="submit"
+                          name="tenId"
+                          class="btn btn-success fa fa-edit"
+                          value="{{ tender.tender_id }}"
+                        ></button>
+                        <button
+                          type="submit"
+                          name="tenIdDelete"
+                          class="btn btn-danger fa fa-trash"
+                          value="{{ tender.tender_id }}"
+                        ></button>
+                        <div class="tenderId">
+                          {% if tender.tender_id == tenderId %}
+                          <div class="message">{{ message }}</div>
+                          {% endif %}
+                        </div>
+                      </td>
+                      <td>{{ tender.Count_of_applied }}</td>
+                    </tr>
+                  </div>
+                </form>
+
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div>
+    Comment Section :
+    <br/>
+    <br/>
+    {% for c in comments %}
+    <div>
+        name : {{ c.comment_name }} 
+        <br/>
+        {{ c.comment_content }}
+    </div>
+    {% endfor %}
+</div>
+
+
+<form class ="site-form" action="{% url 'info_r' tender.tender_id %}" method ="POST">    
+    {% csrf_token %}
+    {{ form.comment_content }}
+    <input type ="submit" value="Post">
+</form>
+
+  </body>
+</html>

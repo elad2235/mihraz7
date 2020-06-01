@@ -10,6 +10,7 @@ from django.contrib.auth import login,logout
 from tenders import views
 from tendersOffers import views as offersViews
 from account.forms import RegistrationForm
+from .forms import CommentForm
 
 def homePage(request):
 	return render(request,'account/homePage.html',{})
@@ -20,8 +21,34 @@ def logOut(request):
 
 def Tenders(request):
 	all_tenders = models.Tender.objects.all()
-	
 	return render(request,'tenders/Tenders.html',{ 'tenders': all_tenders, 'message':'','tenderId':None})
+
+
+def TenderPage(request,id):
+    context = {}
+    form = CommentForm()
+    context['form'] = form
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = models.Comment.objects.create(comment_name = request.user.get_username(),comment_content = form.cleaned_data['comment_content'],tender_id = id)
+            comment.save()
+
+        else:
+            render(request,'tenders/tenderInfo.html',context)
+
+    else:
+        tender = models.Tender.objects.get(tender_id=id)
+        context['tender'] = tender
+        try:
+            comments = models.Comment.objects.filter(tender_id=id)
+            context['comments'] = comments
+        except:
+            context['comments'] = []
+        return render(request,'tenders/tenderInfo.html',context)
+
+
+    return render(request,'tenders/tenderInfo.html',context)
 
 def CloseTenders(request):
 	all_tenders = models.Tender.objects.all()

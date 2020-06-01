@@ -110,6 +110,7 @@ li a:hover {
                   <th scope="col">End Date</th>
                   <th scope="col">New Offer</th>
                   <th scope="col">_________________</th>
+                  <th scope="col">_________________</th>
                   <th scope="col">Count of applied</th>
                 </tr>
               </thead>
@@ -119,7 +120,7 @@ li a:hover {
                   {% csrf_token %}
                   <div class="tender">
                     <tr>
-                      <th scope="row">{{ tender.tender_name }}</th>
+                      <th scope="row"><a href="{% url 'info' tender.tender_id %}">{{ tender.tender_name }}</a><th>
                       <td>{{ tender.tender_id }}</td>
                       <td>{{ tender.files }}</td>
                       <td>{{ tender.online_payment }}</td>
