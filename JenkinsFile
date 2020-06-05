@@ -15,14 +15,16 @@ pipeline {
 				steps {
 					    withEnv(["HOME=${env.WORKSPACE}"]) {
 					      sh "python3 -m xmlrunner discover mihraz7/ -o ./test-reports/junit/"
+						  sh "flake8 --ignore W191,E501 --output-file flake8.txt"
+						  sh "flake8_junit flake8.txt ./flake/flake8_junit.xml"
     					}
 						
 				}
 				post {
                 always {
 					withEnv(["HOME=${env.WORKSPACE}"]) {
-
                     	junit 'test-reports/junit/*.xml'
+						junit 'flake/*.xml'
 					}
                 }
             }
