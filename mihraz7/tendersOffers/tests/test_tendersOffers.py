@@ -1,13 +1,14 @@
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 import unittest
 import django
 import xmlrunner
-django.setup()
 from tendersOffers.models import TenderOffer
+django.setup()
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
+
 
 class TestingTenderOffer(unittest.TestCase):
-    
+
     def test_insert_id(self):
         tenderoffer_instance = TenderOffer.objects.create(id=1, tender_id='750', tender_name='test', first_name='sean', last_name='sean', email='test@test.com', offer='100')
         tenderoffer_instance.save()

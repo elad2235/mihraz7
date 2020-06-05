@@ -1,14 +1,14 @@
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 import unittest
 import django
 import xmlrunner
+from contact.models import contact
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 django.setup()
-from contact.models import contact 
 
 
 class TestingContact(unittest.TestCase):
-    
+
     def test_insert_name(self):
         contact_instance = contact.objects.create(Name='Test1', Email='Test@test.com', Subject='testing', Message='Hello', date='2020-05-17')
         contact_instance.save()
@@ -16,14 +16,12 @@ class TestingContact(unittest.TestCase):
         self.assertEqual(contact_instance.Name, retrieve.Name)
         retrieve.delete()
 
-
     def test_insert_email(self):
         contact_instance = contact.objects.create(Name='Test1', Email='Test@test.com', Subject='testing', Message='Hello', date='2020-05-17')
         contact_instance.save()
         retrieve = contact.objects.get(Email='Test@test.com')
         self.assertEqual(contact_instance.Email, retrieve.Email)
         retrieve.delete()
-
 
     def test_insert_subject(self):
         contact_instance = contact.objects.create(Name='Test1', Email='Test@test.com', Subject='testing', Message='Hello', date='2020-05-17')
@@ -46,7 +44,7 @@ class TestingContact(unittest.TestCase):
         try:
             retrieve = contact.objects.get(Name='Test1')
         except contact.DoesNotExist:
-            retrieve=None
+            retrieve = None
         self.assertEqual(None, retrieve)
 
 

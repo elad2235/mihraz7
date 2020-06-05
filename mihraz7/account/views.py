@@ -20,48 +20,53 @@ def registration_view(request):
 			return redirect('')
 		else:
 			context['registration_form'] = form
-			
-	else: #GET request
+
+	else:
 		form = RegistrationForm()
 		context['registration_form'] = form
 	return render(request, 'register/register.html', context)
 
+
 def login_user(request):
-	context ={}
+	context = {}
 
 	if request.POST:
 		form = AuthenticationForm(data=request.POST)
 		if form.is_valid():
 			user = form.get_user()
-			login(request,user)
+			login(request, user)
 			form = AuthenticationForm()
 			context['form'] = form
 			context['allTendersOffers'] = offersViews.AllTendersOffers()
 			context['CurrentEmailProfile'] = request.user.email
-			return render(request,'account/homePage.html',context)
+			return render(request, 'account/homePage.html', context)
 		else:
-			context['form']=form
-			return render(request,'account/login_user.html',context, status = 401)
+			context['form'] = form
+			return render(request, 'account/login_user.html', context, status=401)
 
 	else:
 		if request.user.is_authenticated:
-			context['allTendersOffers']=offersViews.AllTendersOffers()
+			context['allTendersOffers'] = offersViews.AllTendersOffers()
 			context['CurrentEmailProfile'] = request.user.email
-			return render(request,'account/homePage.html',context)
+			return render(request, 'account/homePage.html', context)
 		else:
 			form = AuthenticationForm()
-			context['form']=form
-			return render(request,'account/login_user.html',context)
+			context['form'] = form
+			return render(request, 'account/login_user.html', context)
+
 
 def homePage(request):
-	return render(request,'account/homePage.html',{})
+	return render(request, 'account/homePage.html', {})
+
 
 def logOut(request):
 	logout(request)
-	return render(request,'account/login_user.html',{})
+	return render(request, 'account/login_user.html', {})
+
 
 def Tenders(request):
 	return views.Tenders(request)
-	
+
+
 def MyTenders(request):
 	return views.MyTenders(request)

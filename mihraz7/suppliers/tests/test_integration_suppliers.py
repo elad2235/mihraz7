@@ -1,9 +1,9 @@
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 import unittest
 import django
-django.setup()
 from suppliers.models import Supplier
+django.setup()
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 
 
 class TestingSuppliersIntegration(unittest.TestCase):
@@ -13,5 +13,3 @@ class TestingSuppliersIntegration(unittest.TestCase):
         retrieve = Supplier.objects.get(Supplier_name='Test1')
         supplier_instance.delete()
         self.assertNotEqual(None, retrieve.Supplier_id)
-    
-

@@ -1,9 +1,9 @@
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 import unittest
 import django
-django.setup()
 from contact.models import contact
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
+django.setup()
 
 
 class TestingContactIntegration(unittest.TestCase):
@@ -13,5 +13,3 @@ class TestingContactIntegration(unittest.TestCase):
         retrieve = contact.objects.get(Name='Test1')
         contact_instance.delete()
         self.assertNotEqual(None, retrieve.Name)
-    
-

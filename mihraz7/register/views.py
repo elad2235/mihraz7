@@ -11,11 +11,10 @@ def registerPage(request):
             return HttpResponse('Thanks for contacting us!')
 
         else:
-            context = {'form':form}
-            return render(request, 'register/register.html',context)
-            
+            context = {'form': form}
+            return render(request, 'register/register.html', context)
+
     else:
         form = RegistrationForm()
-        context ={'form':form}
-        return render(request, 'register/register.html',context)
-
+        context = {'form': form}
+        return render(request, 'register/register.html', context)

@@ -25,7 +25,7 @@ SECRET_KEY = 'c+qi*q5jvz^td^c0dzz93a37n%w)!wu&mq0*$ts@r@)ev*@%0k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['testserver','127.0.0.1','mihraz7.herokuapp.com']
+ALLOWED_HOSTS = ['testserver', '127.0.0.1', 'mihraz7.herokuapp.com']
 
 
 # Application definition
@@ -85,10 +85,10 @@ DATABASES = {
         'ENGINE': 'djongo',
         'CLIENT': {
 
-            'host':'mongodb+srv://mihraz7-admin:<mihraz7-admin>@mihraz7-ovzwu.mongodb.net/test?retryWrites=true&w=majority',
-            'username':'mihraz7-admin',
-            'password':'mihraz7-admin',
-            'authMechanism':'SCRAM-SHA-1'
+            'host': 'mongodb+srv://mihraz7-admin:<mihraz7-admin>@mihraz7-ovzwu.mongodb.net/test?retryWrites=true&w=majority',
+            'username': 'mihraz7-admin',
+            'password': 'mihraz7-admin',
+            'authMechanism': 'SCRAM-SHA-1'
         }
     }
 }
@@ -131,5 +131,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#STATIC_ROOT = 'static'
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+# STATIC_ROOT = 'static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

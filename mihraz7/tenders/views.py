@@ -6,99 +6,100 @@ from tenders import views
 from tendersOffers import views as offersViews
 from .forms import CommentForm
 
+
 def homePage(request):
-	return render(request,'account/homePage.html',{})
+	return render(request, 'account/homePage.html', {})
+
 
 def logOut(request):
 	logout(request)
-	return render(request,'account/login_user.html',{})
+	return render(request, 'account/login_user.html', {})
+
 
 def Tenders(request):
-
-    ad = request.user.is_admin
-    max=0
-    
-    all_tenders = models.Tender.objects.all()
-    for ten in all_tenders:
-        if ten.Count_of_applied > max:
-            max = ten.Count_of_applied
-            id = ten.tender_id
-    return render(request,'tenders/Tenders.html',{ 'tenders': all_tenders, 'message':'','tenderId':None, 'max_ten':id,'is_ad': ad })
+	ad = request.user.is_admin
+	max = 0
+	all_tenders = models.Tender.objects.all()
+	for ten in all_tenders:
+		if ten.Count_of_applied > max:
+			max = ten.Count_of_applied
+			id = ten.tender_id
+	return render(request, 'tenders/Tenders.html', {'tenders': all_tenders, 'message': '', 'tenderId': None, 'max_ten': id, 'is_ad': ad})
 
 
+def TenderPage(request, id):
+	context = {}
+	form = CommentForm()
+	context['form'] = form
+	if request.method == 'POST':
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			comment = models.Comment.objects.create(comment_name=request.user.get_username(), comment_content=form.cleaned_data['comment_content'], tender_id=id)
+			comment.save()
 
-def TenderPage(request,id):
-    context = {}
-    form = CommentForm()
-    context['form'] = form
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = models.Comment.objects.create(comment_name = request.user.get_username(),comment_content = form.cleaned_data['comment_content'],tender_id = id)
-            comment.save()
+		else:
+			render(request, 'tenders/tenderInfo.html', context)
 
-        else:
-            render(request,'tenders/tenderInfo.html',context)
+	else:
+		tender = models.Tender.objects.get(tender_id=id)
+		context['tender'] = tender
+		try:
+			comments = models.Comment.objects.filter(tender_id=id)
+			context['comments'] = comments
+		except Exception:
+			context['comments'] = []
+		return render(request, 'tenders/tenderInfo.html', context)
+	return render(request, 'tenders/tenderInfo.html', context)
 
-    else:
-        tender = models.Tender.objects.get(tender_id=id)
-        context['tender'] = tender
-        try:
-            comments = models.Comment.objects.filter(tender_id=id)
-            context['comments'] = comments
-        except:
-            context['comments'] = []
-        return render(request,'tenders/tenderInfo.html',context)
-
-
-    return render(request,'tenders/tenderInfo.html',context)
 
 def CloseTenders(request):
 	all_tenders = models.Tender.objects.all()
-	return render(request,'tenders/CloseTenders.html',{ 'tenders': all_tenders, 'message':'','tenderId':None})
+	return render(request, 'tenders/CloseTenders.html', {'tenders': all_tenders, 'message': '', 'tenderId': None})
+
 
 def RegisterOffer(request):
-    all_tenders = models.Tender.objects.all()
-    if 'tenId' in request.POST:
-        if request.POST.get("Offer") == '':
-            all_tendersDic = {
-                'tenderId': request.POST.get("tenId"),
-                'message': 'Empty Offer!',
-                'tenders': all_tenders
-            }
-        else:
-            all_tendersDic = {
-                'tenderId': request.POST.get("tenId"),
-                'message': 'Offer Accepted!',
-                'tenders': all_tenders
-            }
-            offersViews.RegisterOffer(request)
-    else:
-        all_tendersDic = {
-            'tenderId': request.POST.get("tenIdDelete"),
-            'message': 'Offer Deleted!',
-            'tenders': all_tenders
-        }
-        offersViews.DeleteOffer(request)
-    return render(request, 'tenders/Tenders.html', all_tendersDic)
+	all_tenders = models.Tender.objects.all()
+	if 'tenId' in request.POST:
+		if request.POST.get("Offer") == '':
+			all_tendersDic = {
+				'tenderId': request.POST.get("tenId"),
+				'message': 'Empty Offer!',
+				'tenders': all_tenders
+			}
+		else:
+			all_tendersDic = {
+				'tenderId': request.POST.get("tenId"),
+				'message': 'Offer Accepted!',
+				'tenders': all_tenders
+			}
+			offersViews.RegisterOffer(request)
+	else:
+		all_tendersDic = {
+			'tenderId': request.POST.get("tenIdDelete"),
+			'message': 'Offer Deleted!',
+			'tenders': all_tenders
+		}
+		offersViews.DeleteOffer(request)
+	return render(request, 'tenders/Tenders.html', all_tendersDic)
+
 
 def Search(request):
-    all_tendersDic = {
-        'tenderId': '',
-        'message': '',
-        'tenders': models.Tender.objects.filter(tender_id=request.POST.get("search"))
-    }
-    return render(request, 'tenders/Tenders.html', all_tendersDic)
+	all_tendersDic = {
+		'tenderId': '',
+		'message': '',
+		'tenders': models.Tender.objects.filter(tender_id=request.POST.get("search"))
+	}
+	return render(request, 'tenders/Tenders.html', all_tendersDic)
+
 
 def DeleteOffer(request):
 	views.DeleteOffer(request)
 
+
 def MyTenders(request):
-	context={}
+	context = {}
 	form = AuthenticationForm()
 	context['form'] = form
 	context['allTendersOffers'] = offersViews.AllTendersOffers()
 	context['CurrentEmailProfile'] = request.user.email
-	return render(request,'tenders/Mytenders.html',context)
-
-	
+	return render(request, 'tenders/Mytenders.html', context)
