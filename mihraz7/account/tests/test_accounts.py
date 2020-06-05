@@ -6,7 +6,7 @@ import xmlrunner
 django.setup()
 from account.models import Account
 from django.test import Client
-from account.views import login_user,registration_view,login_user,homePage,logOut,Tenders
+from account.views import login_user
 from django.urls import reverse, resolve
 
 class TestingAccounts(unittest.TestCase):

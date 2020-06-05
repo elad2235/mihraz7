@@ -1,11 +1,7 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
 from suppliers import views as supp_views
 from contact import views as contact_views
-
-from account.views import (
-    registration_view
-)
 
 urlpatterns = [
     path('homePage/',views.homePage,name='homePage'),

@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from . import models
 from tenders import models as tenderModel
 

@@ -2,7 +2,6 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 import unittest
 import django
-import xmlrunner
 django.setup()
 
 from tendersOffers.models import TenderOffer

@@ -5,7 +5,6 @@ import django
 import xmlrunner
 django.setup()
 from contact.models import contact 
-from django.test import Client
 
 
 class TestingContact(unittest.TestCase):

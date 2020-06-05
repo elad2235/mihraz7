@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from . import models
-from suppliers import views
+
 
 def supp_page(request):
 	all_suppliers = models.Supplier.objects.all()

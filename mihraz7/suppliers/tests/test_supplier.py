@@ -5,7 +5,6 @@ import django
 import xmlrunner
 django.setup()
 from suppliers.models import Supplier
-from django.test import Client
 
 
 class TestingSupplier(unittest.TestCase):

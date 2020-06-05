@@ -1,15 +1,9 @@
 from django.shortcuts import render
-from django.contrib.auth import login,logout
-
+from django.contrib.auth import logout
 from . import models
-from tendersOffers import views
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login,logout
 from tenders import views
 from tendersOffers import views as offersViews
-from account.forms import RegistrationForm
 from .forms import CommentForm
 
 def homePage(request):
@@ -66,7 +60,7 @@ def CloseTenders(request):
 def RegisterOffer(request):
     all_tenders = models.Tender.objects.all()
     if 'tenId' in request.POST:
-        if request.POST.get("Offer") is '':
+        if request.POST.get("Offer") == '':
             all_tendersDic = {
                 'tenderId': request.POST.get("tenId"),
                 'message': 'Empty Offer!',
