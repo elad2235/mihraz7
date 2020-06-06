@@ -1,10 +1,10 @@
 import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 import unittest
 import xmlrunner
 from tendersOffers.models import TenderOffer
 import django
 django.setup()
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 
 
 class TestingTenderOffer(unittest.TestCase):

@@ -1,4 +1,5 @@
 import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 import unittest
 import django
 django.setup()
@@ -7,7 +8,6 @@ from account.models import Account
 from django.test import Client
 from account.views import login_user
 from django.urls import reverse, resolve
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 
 
 class TestingAccounts(unittest.TestCase):

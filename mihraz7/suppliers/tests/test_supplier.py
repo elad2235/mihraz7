@@ -1,10 +1,10 @@
 import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 import unittest
 import django
 django.setup()
 import xmlrunner
 from suppliers.models import Supplier
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 
 
 class TestingSupplier(unittest.TestCase):

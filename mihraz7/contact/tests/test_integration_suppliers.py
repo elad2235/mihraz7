@@ -1,9 +1,9 @@
 import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 import unittest
 import django
 django.setup()
 from contact.models import contact
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 
 
 class TestingContactIntegration(unittest.TestCase):

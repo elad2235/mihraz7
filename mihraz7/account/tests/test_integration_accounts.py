@@ -1,10 +1,10 @@
 import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 import unittest
 import django
 django.setup()
 from django.test import Client
 from account.models import Account
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 
 
 class TestingAccountsIntegration(unittest.TestCase):

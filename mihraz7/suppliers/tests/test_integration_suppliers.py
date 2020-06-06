@@ -1,9 +1,9 @@
 import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 import unittest
 import django
 django.setup()
 from suppliers.models import Supplier
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 
 
 class TestingSuppliersIntegration(unittest.TestCase):
