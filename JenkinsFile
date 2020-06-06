@@ -17,7 +17,7 @@ pipeline {
 					      sh "python3 -m xmlrunner discover mihraz7/ -o ./test-reports/junit/"
 						  sh "python3 -m pyflakes mihraz7/"
 						  sh "python3 -m flake8 --ignore W191,E501 --output-file flake8.txt"
-						  sh "python3 -m flake8_junit flake8.txt ./flake/flake8_junit.xml"
+						  sh "python3 -m flake8_junit flake8.txt ./test-reports/flake8_junit.xml"
     					}
 						
 				}
@@ -25,7 +25,7 @@ pipeline {
                 always {
 					withEnv(["HOME=${env.WORKSPACE}"]) {
                     	junit 'test-reports/junit/*.xml'
-						junit 'flake/*.xml'
+						junit 'test-reports/flake8_junit.xml'
 					}
                 }
             }
