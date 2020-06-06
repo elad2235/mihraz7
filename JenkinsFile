@@ -5,8 +5,7 @@ pipeline {
 				steps {
 					    withEnv(["HOME=${env.WORKSPACE}"]) {
 					      sh "pip3 install -r requirements.txt --user"
-						  sh "which flake8_junit"
-						
+							sh "export PATH=/var/jenkins_home/workspace/Team_9/Mihraz7-pipeline/.local/bin:$PATH"
     					}
 				}
 
