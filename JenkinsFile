@@ -6,6 +6,7 @@ pipeline {
 					    withEnv(["HOME=${env.WORKSPACE}"]) {
 					      sh "pip3 install -r requirements.txt --user"
 							sh "export PATH=/var/jenkins_home/workspace/Team_9/Mihraz7-pipeline/.local/bin:$PATH"
+							sh "PATH=$PATH"
     					}
 				}
 
