@@ -1,9 +1,9 @@
 import os
 import unittest
 import django
+django.setup()
 from tendersOffers.models import TenderOffer
 from tenders.models import Tender
-django.setup()
 os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 
 

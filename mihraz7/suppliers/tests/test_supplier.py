@@ -1,9 +1,9 @@
 import os
 import unittest
 import django
+django.setup()
 import xmlrunner
 from suppliers.models import Supplier
-django.setup()
 os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 
 

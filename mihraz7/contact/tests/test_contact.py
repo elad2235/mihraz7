@@ -1,10 +1,10 @@
 import os
 import unittest
 import django
+django.setup()
 import xmlrunner
 from contact.models import contact
 os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
-django.setup()
 
 
 class TestingContact(unittest.TestCase):

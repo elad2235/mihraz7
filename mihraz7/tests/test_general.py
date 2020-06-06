@@ -2,9 +2,9 @@ import os
 from django.test import Client
 import unittest
 import django
+django.setup()
 import xmlrunner
 os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
-django.setup()
 
 
 class TestingGeneral(unittest.TestCase):

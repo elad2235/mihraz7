@@ -2,10 +2,10 @@ import os
 from tenders.models import Tender
 import unittest
 import django
+django.setup()
 import xmlrunner
 import datetime
 os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
-django.setup()
 
 
 class TestingTender(unittest.TestCase):
