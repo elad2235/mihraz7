@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker 'elad2235/mihraz7:env' } 
+    agent { docker 'elad2235/mihraz7:latest' } 
     stages {
 			stage('Setup Dependency') {
 				steps {
