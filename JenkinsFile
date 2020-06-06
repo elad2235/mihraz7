@@ -16,7 +16,6 @@ pipeline {
 				steps {
 					    withEnv(["HOME=${env.WORKSPACE}"]) {
 					      sh "python3 -m xmlrunner discover mihraz7/ -o ./test-reports/junit/"
-						  sh "python3 -m pyflakes mihraz7/"
 						  sh "python3 -m flake8 --ignore W191,E501 --output-file flake8.txt"
     					}
 						
