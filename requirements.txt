@@ -14,3 +14,4 @@ gunicorn==20.0.4
 ordereddict==1.1
 flake8==3.8.2
 flake8-junit-report==2.1.0
+flake8-formatter-junit-xml==0.0.6
