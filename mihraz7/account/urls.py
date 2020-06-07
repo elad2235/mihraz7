@@ -13,4 +13,5 @@ urlpatterns = [
     path('suppliers/', supp_views.supp_page, name="supp_page"),
     path('contact/', contact_views.contact_us, name="contact_us"),
     path('MyTenders/', views.MyTenders, name="my_tenders"),
+    path('Myprofile/', views.my_profile, name="my_profile"),
 ]

@@ -5,6 +5,7 @@ from django.contrib.auth import logout
 from tenders import views
 from tendersOffers import views as offersViews
 from account.forms import RegistrationForm
+from .models import Account
 
 
 def registration_view(request):
@@ -70,3 +71,8 @@ def Tenders(request):
 
 def MyTenders(request):
 	return views.MyTenders(request)
+
+
+def my_profile(request):
+	user = Account.objects.get(username=request.user.username)
+	return render(request, 'account/myProfile.html', {user: user})

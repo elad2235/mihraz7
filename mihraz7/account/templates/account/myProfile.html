@@ -122,70 +122,33 @@ li a:hover {
       <a class="nav-link" href="{% url 'contact_us' %}">Contact us</a>
       <a class="nav-link" href="{% url 'account_logout' %}">logOut</a>
     </nav>
-    <div class="container-fluid text-center background-picture">
-      <div class="row content">
-      
-        <div class="col-sm-8 text-right hero-text">
-          <h1>ברוך הבא</h1>
-          <h4>
-            <p class="font-weight-bold">
-              <label for="formControlRange">
-                העיר באר שבע הינה המטרופולין הרביעי במדינת ישראל הנמצאת בעיצומו
-                של תנופת פיתוח אדירה בעשור האחרון</label
-              >
-            </p>
-            <p class="font-weight-bold">
-              <label for="formControlRange">
-                בעיר מתבצעים פרויקטים רבים בהיקף של כשלושה מיליארד שקל בשנה
-                שמטרתם לשפר את איכות החיים של תושבי העיר ולחזק את מעמדה של באר
-                שבע כמטרופולין וכבירת ההזדמנויות של ישראל</label
-              >
-            </p>
-            <p class="font-weight-bold">
-              <label for="formControlRange">
-                מידי שבוע נפתחים ונסגרים מכרזים של העירייה לפרויקטים השונים אשר
-                נותן הזדמנות גם קבלנים /בעלי עסקים/ יזמים בתחילת דרכם שיכולים
-                להגיש מועמדות לאחת מהפרויקטים הנתונים בעיר</label
-              >
-            </p>
-            <p class="font-weight-bold">
-              <label for="formControlRange">
-                ניהול המכרזים עד היום עובד בצורה מיושנת שבו נדרשים להגיש טפסים
-                רבים על מנת להירשם למכרז מסוים</label
-              >
-            </p>
-            <p class="font-weight-bold">
-              <label for="formControlRange">
-                דבר אשר מייצר תסכול מצד הקבלנים /בעלי עסקים/ יזמים אשר צריכים
-                למלא לפעמים מספר פעמים את אותם הטפסים</label
-              >
-            </p>
-            <p class="font-weight-bold">
-              <label for="formControlRange">
-                ובנוסף מייצר תסכול לפקיד אשר צריך לטפל בכל הטפסים הנכנסים ללא
-                דרך קלה לניהול ומעבר על ההרשמות</label
-              >
-            </p>
-            <p class="font-weight-bold">
-              <label for="formControlRange">
-                כאשר ניהול הטפסים יכול להעשות בצורה אוטומטית ומהירה ובכך לפנות
-                את הזמן של העובד או לפחות לזרז את תהליך מעבר על המועמדים</label
-              >
-            </p>
-          </h4>
-        </div>
-        <div class="col-sm-2">
-          <div class="well">
-            <p>ADS</p>
-          </div>
-          <div class="well">
-            <p>ADS</p>
-          </div>
-        </div>
-      </div>
+
+    <div>
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+            <td>Username:</td>
+            <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+            <td>Email:</td>
+            <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+            <td>First Name:</td>
+            <td>{{ user.first_name }}</td>
+            </tr>
+            <tr>
+            <td>Last Name:</td>
+            <td>{{ user.last_name }}</td>
+            </tr>
+            <tr>
+            <td>Phone Number:</td>
+            <td>{{ user.phone }}</td>
+            </tr>
+            </tbody>
+            </table>
     </div>
 
-    <footer class="container-fluid text-center">
-    </footer>
-  </body>
+    </body>
 </html>
