@@ -46,6 +46,15 @@ class TestingRegister(unittest.TestCase):
         self.assertEqual(account_instance.phone, retrieve.phone)
         retrieve.delete()
 
+    def test_remove_account(self):
+        account_instance = Account.objects.create(email='test_@test.com', username='test_', first_name='tes', last_name='ting', phone='111111111', password='testtest')
+        account_instance.delete()
+        try:
+            retrieve = Account.objects.get(username='test_')
+        except Account.DoesNotExist:
+            retrieve = None
+        self.assertEqual(None, retrieve)
+
     def test_url_register(self):
         url = reverse('register')
         self.assertEqual(resolve(url).func, registerPage)
