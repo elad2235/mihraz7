@@ -85,3 +85,20 @@ class TestingTendersIntegration(unittest.TestCase):
         # cleanup
         Tender.objects.filter(tender_name='_test_').delete()
         Comment.objects.filter(comment_content='_test_test').delete()
+
+    def test_search_form_open_tender(self):
+        client = Client()
+        # Login Stage
+        client.post('/login/', {'username': 'TestMe', 'password': '1342'}, follow=True)
+        # Create Test Tender Stage
+        tender_instance = Tender.objects.create(tender_name='_test_', tender_id='131313', winner='_test_', files='_test_', online_payment='_test_', url='test.com', end_date='2022-05-17', update_date='2022-05-14', Count_of_applied=0)
+        tender_instance.save()
+        retrieve = Tender.objects.get(tender_id='131313')
+        self.assertEqual('_test_', retrieve.tender_name)
+        # Get Open Tender Page Stage
+        response = client.get(reverse('Tender'))
+        # Search Stage
+        response = client.post('/tenders/Search/', {'search': '131313'},follow=True)
+        self.assertNotEqual(str(response.content).find('131313'), -1)
+        # cleanup
+        Tender.objects.filter(tender_name='_test_').delete()
