@@ -1,6 +1,7 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 from tenders.models import Tender
+from tenders.models import Comment
 import unittest
 import django
 django.setup()
@@ -65,6 +66,46 @@ class TestingTender(unittest.TestCase):
         retrieve = Tender.objects.get(update_date=datetime.date(2020, 5, 28), tender_name='Tender1')
         self.assertEqual(tender_instance.update_date, retrieve.update_date)
         Tender.objects.filter(tender_name='Tender1').delete()
+
+    def test_remove_tender(self):
+        tender_instance = Tender.objects.create(tender_name='Tender1', tender_id='1234', winner='test1', files='file', online_payment='yes', url='test.com', end_date=datetime.date(2020, 5, 26), update_date=datetime.date(2020, 5, 28))
+        tender_instance.save()
+        tender_instance.delete()
+        try:
+            retrieve = Tender.objects.get(tender_name='Tender1')
+        except Tender.DoesNotExist:
+            retrieve = None
+        self.assertEqual(None, retrieve)
+
+    def test_insert_comment_name(self):
+        comment_instance = Comment.objects.create(comment_name='Test1', comment_content='comment1', tender_id='1234')
+        comment_instance.save()
+        retrieve = Comment.objects.get(comment_name='Test1')
+        self.assertEqual(comment_instance.comment_name, retrieve.comment_name)
+        Comment.objects.filter(comment_name='Test1').delete()
+
+    def test_insert_comment_content(self):
+        comment_instance = Comment.objects.create(comment_name='Test1', comment_content='comment1', tender_id='1234')
+        comment_instance.save()
+        retrieve = Comment.objects.get(comment_content='comment1')
+        self.assertEqual(comment_instance.comment_content, retrieve.comment_content)
+        Comment.objects.filter(comment_content='comment1').delete()
+
+    def test_insert_tender_id(self):
+        comment_instance = Comment.objects.create(comment_name='Test1', comment_content='comment1', tender_id='1234')
+        comment_instance.save()
+        retrieve = Comment.objects.get(tender_id='1234')
+        self.assertEqual(comment_instance.tender_id, retrieve.tender_id)
+        Comment.objects.filter(tender_id='1234').delete()
+
+    def test_remove_comment(self):
+        comment_instance = Comment.objects.create(comment_name='Test1', comment_content='comment1', tender_id='1234')
+        comment_instance.delete()
+        try:
+            retrieve = Comment.objects.get(comment_name='Test1')
+        except Comment.DoesNotExist:
+            retrieve = None
+        self.assertEqual(None, retrieve)
 
 
 if __name__ == '__main__':
