@@ -15,6 +15,7 @@ class TestingTendersOffersIntegration(unittest.TestCase):
         retrieve = TenderOffer.objects.get(tender_name='test')
         tenderoffer_instance.delete()
         self.assertNotEqual(None, retrieve.tender_id)
+        Tender.objects.filter(tender_name='test').delete()
 
     def test_new_tender_submit_offer_cancel_offer(self):
         tender_instance = Tender.objects.create(tender_name='Tender1', tender_id='1234', winner='test1', files='file', online_payment='yes', url='test.com', end_date='2020-05-17', update_date='2020-05-14')
@@ -28,3 +29,4 @@ class TestingTendersOffersIntegration(unittest.TestCase):
         self.assertNotEqual(None, retrieve_to.tender_id)
         tender_instance.delete()
         self.assertNotEqual(None, retrieve_t.tender_id)
+        Tender.objects.filter(tender_name='Tender1').delete()

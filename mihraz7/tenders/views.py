@@ -19,6 +19,7 @@ def logOut(request):
 def Tenders(request):
 	ad = request.user.is_admin
 	max = 0
+	id = 0
 	all_tenders = models.Tender.objects.all()
 	for ten in all_tenders:
 		if ten.Count_of_applied > max:
@@ -27,7 +28,7 @@ def Tenders(request):
 	return render(request, 'tenders/Tenders.html', {'tenders': all_tenders, 'message': '', 'tenderId': None, 'max_ten': id, 'is_ad': ad})
 
 
-def TenderPage(request, id):
+def TenderPage(request, id=None):
 	context = {}
 	form = CommentForm()
 	context['form'] = form
