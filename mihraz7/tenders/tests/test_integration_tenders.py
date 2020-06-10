@@ -2,7 +2,6 @@ import unittest
 import os
 from django.test import Client
 from django.urls import reverse
-from django.urls.exceptions import NoReverseMatch
 from tenders.models import Comment
 from tendersOffers.models import TenderOffer
 os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
@@ -76,13 +75,10 @@ class TestingTendersIntegration(unittest.TestCase):
         retrieve = Tender.objects.get(tender_id='131313')
         self.assertEqual('_test_', retrieve.tender_name)
         # Post Comment On Tender Info Page Stage
-        try:
-            response = client.post(reverse('info_r', kwargs={'id': '131313'}, current_app='tenders'), {'comment_content': '_test_test'}, follow=False)
-            self.assertEqual(response.status_code, 200)
-        except Exception as e:
-            print("----Comment Posted----")
+        response = client.post(reverse('info_r', kwargs={'id': '131313'}, current_app='tenders'), {'comment_content': '_test_test'}, follow=False)
+        self.assertEqual(response.status_code, 200)
         comment = Comment.objects.get(comment_content='_test_test')
-        self.assertEqual(comment.comment_content,'_test_test')
+        self.assertEqual(comment.comment_content, '_test_test')
         # Disconnect Stage
         response = client.get('/account/logOut')
         self.assertEqual(response.status_code, 301)
