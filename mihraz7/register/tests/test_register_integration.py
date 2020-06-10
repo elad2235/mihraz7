@@ -17,7 +17,7 @@ class TestingAccountsIntegration(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         retrieve.delete()
 
-    def test_register_login_disconnect(self):
+    def test_register_login_custom_function_disconnect(self):
         account_instance = Account.objects.create_user(email='test_@test.com', username='test_', first_name='tes', last_name='ting', phone='111111111', password='testtest')
         account_instance.save()
         retrieve = Account.objects.get(username='test_')

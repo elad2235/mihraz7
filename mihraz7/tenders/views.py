@@ -30,6 +30,7 @@ def Tenders(request):
 
 def TenderPage(request, id=None):
 	context = {}
+
 	form = CommentForm()
 	context['form'] = form
 	if request.method == 'POST':
@@ -37,9 +38,13 @@ def TenderPage(request, id=None):
 		if form.is_valid():
 			comment = models.Comment.objects.create(comment_name=request.user.get_username(), comment_content=form.cleaned_data['comment_content'], tender_id=id)
 			comment.save()
+			tender = models.Tender.objects.get(tender_id=id)
+			context['tender'] = tender
+			comments = models.Comment.objects.filter(tender_id=id)
+			context['comments'] = comments
 
 		else:
-			render(request, 'tenders/tenderInfo.html', context)
+			return render(request, 'tenders/tenderInfo.html', context)
 
 	else:
 		tender = models.Tender.objects.get(tender_id=id)
