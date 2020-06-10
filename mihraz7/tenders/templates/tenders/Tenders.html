@@ -129,11 +129,11 @@ li a:hover {
                       <th scope="row">
                         {% if is_ad == True %}
                         
-                          {% if tender.tender_id == max_ten%}
+                          {% if tender.tender_id == max_ten %}
                           <a href="{% url 'info' tender.tender_id %}">{{ tender.tender_name }}</a>
                           
                             <img src="https://www.netclipart.com/pp/m/206-2060647_iphone-emojis-iphoneemoji-emojisticker-iphone-star-emoji-transparent.png" alt="max offers" width="40px" height="25px">
-                          {% elif tender.tender_id != max_ten%}
+                          {% elif tender.tender_id != max_ten %}
                           <a href="{% url 'info' tender.tender_id %}">{{ tender.tender_name }}</a>
                             {% endif %}
                         {% elif is_ad == False %}

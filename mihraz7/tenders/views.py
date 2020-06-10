@@ -90,12 +90,15 @@ def RegisterOffer(request):
 
 
 def Search(request):
-	all_tendersDic = {
-		'tenderId': '',
-		'message': '',
-		'tenders': models.Tender.objects.filter(tender_id=request.POST.get("search"))
-	}
-	return render(request, 'tenders/Tenders.html', all_tendersDic)
+	ad = request.user.is_admin
+	max = 0
+	id = 0
+	all_tenders = models.Tender.objects.filter(tender_id=request.POST.get("search"))
+	for ten in all_tenders:
+		if ten.Count_of_applied > max:
+			max = ten.Count_of_applied
+			id = ten.tender_id
+	return render(request, 'tenders/Tenders.html', {'tenders': all_tenders, 'message': '', 'tenderId': None, 'max_ten': id, 'is_ad': ad})
 
 
 def DeleteOffer(request):
