@@ -1,2 +1,1 @@
-./mihraz7/tenders/tests/test_tender.py:94:5: F811 redefinition of unused 'test_insert_tender_id' from line 21
 ./mihraz7/tenders/tests/test_integration_tenders.py:101:72: E231 missing whitespace after ','

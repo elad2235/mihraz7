@@ -91,7 +91,7 @@ class TestingTender(unittest.TestCase):
         self.assertEqual(comment_instance.comment_content, retrieve.comment_content)
         Comment.objects.filter(comment_content='comment1').delete()
 
-    def test_insert_tender_id(self):
+    def test_insert_comment_id(self):
         comment_instance = Comment.objects.create(comment_name='Test1', comment_content='comment1', tender_id='1234')
         comment_instance.save()
         retrieve = Comment.objects.get(tender_id='1234')

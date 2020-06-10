@@ -86,6 +86,15 @@ def RegisterOffer(request):
 			'tenders': all_tenders
 		}
 		offersViews.DeleteOffer(request)
+	ad = request.user.is_admin
+	max = 0
+	id = 0
+	for ten in all_tenders:
+		if ten.Count_of_applied > max:
+			max = ten.Count_of_applied
+			id = ten.tender_id
+	all_tendersDic['max_ten'] = id
+	all_tendersDic['is_ad'] = ad
 	return render(request, 'tenders/Tenders.html', all_tendersDic)
 
 

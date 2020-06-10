@@ -98,7 +98,7 @@ class TestingTendersIntegration(unittest.TestCase):
         # Get Open Tender Page Stage
         response = client.get(reverse('Tender'))
         # Search Stage
-        response = client.post('/tenders/Search/', {'search': '131313'},follow=True)
+        response = client.post('/tenders/Search/', {'search': '131313'}, follow=True)
         self.assertNotEqual(str(response.content).find('131313'), -1)
         # cleanup
         Tender.objects.filter(tender_name='_test_').delete()
