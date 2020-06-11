@@ -1,1 +1,0 @@
-./mihraz7/tenders/tests/test_integration_tenders.py:101:72: E231 missing whitespace after ','
