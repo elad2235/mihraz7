@@ -13,7 +13,8 @@ def homePage(request):
 
 def logOut(request):
 	logout(request)
-	return render(request, 'account/login_user.html', {})
+	form = AuthenticationForm()
+	return render(request, 'account/login_user.html', {'form': form})
 
 
 def Tenders(request):

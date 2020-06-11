@@ -62,7 +62,7 @@ def homePage(request):
 
 def logOut(request):
 	logout(request)
-	return render(request, 'account/login_user.html', {})
+	return login_user(request)
 
 
 def Tenders(request):
