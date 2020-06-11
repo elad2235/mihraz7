@@ -8,7 +8,7 @@ def registerPage(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('Thanks for contacting us!')
+            return render('Thanks for contacting us!')
 
         else:
             context = {'form': form}

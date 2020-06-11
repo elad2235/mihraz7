@@ -21,7 +21,7 @@ def Tenders(request):
 	ad = request.user.is_admin
 	max = 0
 	id = 0
-	all_tenders = models.Tender.objects.all()
+	all_tenders = models.Tender.objects.filter(winner='')
 	for ten in all_tenders:
 		if ten.Count_of_applied > max:
 			max = ten.Count_of_applied
