@@ -65,7 +65,7 @@ def CloseTenders(request):
 
 
 def RegisterOffer(request):
-	all_tenders = models.Tender.objects.all()
+	all_tenders = models.Tender.objects.filter(winner='')
 	if 'tenId' in request.POST:
 		if request.POST.get("Offer") == '':
 			all_tendersDic = {

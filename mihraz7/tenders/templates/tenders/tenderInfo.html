@@ -41,6 +41,38 @@ li a:hover {
 .search-container {
   float: right;
 }
+.comments {
+  display: grid;
+  grid-template-columns: repeat(3,0.8fr);
+  grid-gap: 30px;
+  padding:10px;
+}
+.comment {
+  padding: 10px;
+  border: 1px solid grey;
+  position: relative;
+  color: blue;
+}
+.comment-text {
+  padding-left: 40px;
+  color: black;
+}
+.form{
+  width: 600px;
+  height: 300px;
+  padding: 15px 10px;
+
+}
+.form h2{
+  text-align: left;
+  margin-bottom: 15px;
+}
+textarea{
+  height: 300px;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #aaa;
+}
 
 </style>
 <!DOCTYPE html>
@@ -85,7 +117,7 @@ li a:hover {
           </li>
         </ul>
       </div>
-      <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+      <a class="nav-linCommentk" href="{% url 'admin:index' %}">Admin</a>
       <a class="nav-link" href="{% url 'my_profile' %}">My Profile</a>
       <a class="nav-link" href="{% url 'contact_us' %}">Contact us</a>
       <a class="nav-link" href="{% url 'account_logout' %}">logOut</a>
@@ -169,26 +201,34 @@ li a:hover {
         </div>
       </div>
     </div>
+<div class = "form">
+  <h2>Leave Us a Comment:</h2>
+  <div class="form-group">
+    <form action="{% url 'info_r' tender.tender_id %}" method ="POST">    
+      {% csrf_token %}
+      {{ form.comment_content }}
+      <input type ="submit" value="Post">
+    </form>
+  </div>
+</div>
+<br/><br/><br/>
+<h3>See what other people are saying:</h3>
 
-<div>
-    Comment Section :
     <br/>
     <br/>
+<div class="comments">
     {% for c in comments %}
-    <div>
-        name : {{ c.comment_name }} 
+    <div class ="comment">
+         {{ c.comment_name }}:
         <br/>
-        {{ c.comment_content }}
+        <div class ="comment-text">  
+          {{ c.comment_content }}
+        </div>
     </div>
     {% endfor %}
 </div>
 
 
-<form class ="site-form" action="{% url 'info_r' tender.tender_id %}" method ="POST">    
-    {% csrf_token %}
-    {{ form.comment_content }}
-    <input type ="submit" value="Post">
-</form>
 
   </body>
 </html>

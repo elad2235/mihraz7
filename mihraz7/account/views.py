@@ -6,6 +6,8 @@ from tenders import views
 from tendersOffers import views as offersViews
 from account.forms import RegistrationForm
 from .models import Account
+from tendersOffers.models import TenderOffer
+from tenders.models import Tender
 
 
 def registration_view(request):
@@ -75,4 +77,6 @@ def MyTenders(request):
 
 def my_profile(request):
 	user = Account.objects.get(username=request.user.username)
-	return render(request, 'account/myProfile.html', {user: user})
+	recent_tender = TenderOffer.objects.filter(email=user.email).last()
+	recent_tender = Tender.objects.get(tender_id=recent_tender.tender_id)
+	return render(request, 'account/myProfile.html', {'user': user, 'recent': recent_tender})
