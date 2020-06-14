@@ -15,7 +15,14 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <style>
-
+body {
+  background-image: url("https://image.freepik.com/free-vector/background-elegant-white-texture_23-2148438405.jpg");
+  height: 100%;
+  opacity: 0.83;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 li {
   float: left;
@@ -38,6 +45,10 @@ li a:hover {
 
 .search-container {
   float: right;
+}
+
+.active{
+  background-color:cornflowerblue;
 }
 
 </style>
@@ -104,7 +115,7 @@ li a:hover {
             
             <table id="1234" class="table table-bordered">
               <thead>
-                <tr>
+                <tr class="active">
                   <th scope="col">Tender Name</th>
                   <th scope="col">Tender Id</th>
                   <th scope="col">Files</th>

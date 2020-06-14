@@ -18,6 +18,13 @@
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <style>
 
+body {
+  background-image: url("https://image.freepik.com/free-vector/background-elegant-white-texture_23-2148438405.jpg");
+  height: 100%;
+  opacity: 0.83;
+  background-position: bottom;
+  background-size: cover;
+}
 
 li {
   float: left;
@@ -74,6 +81,9 @@ textarea{
   border-bottom: 2px solid #aaa;
 }
 
+.active{
+  background-color:cornflowerblue;
+}
 </style>
 <!DOCTYPE html>
 <html lang="en">
@@ -130,7 +140,7 @@ textarea{
           <div class="col-12">
             <table id="1234" class="table table-bordered">
               <thead>
-                <tr>
+                <tr class="active">
                   <th scope="col">Tender Name</th>
                   <th scope="col">Tender Id</th>
                   <th scope="col">Files</th>
