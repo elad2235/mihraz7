@@ -77,6 +77,10 @@ def MyTenders(request):
 
 def my_profile(request):
 	user = Account.objects.get(username=request.user.username)
-	recent_tender = TenderOffer.objects.filter(email=user.email).last()
-	recent_tender = Tender.objects.get(tender_id=recent_tender.tender_id)
+	try:
+		recent_tender = TenderOffer.objects.filter(email=user.email).last()
+		recent_tender = Tender.objects.get(tender_id=recent_tender.tender_id)
+	except Exception:
+		pass
+	recent_tender = 'No Recent Activity'
 	return render(request, 'account/myProfile.html', {'user': user, 'recent': recent_tender})
