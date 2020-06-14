@@ -153,8 +153,8 @@ li a:hover {
                       </th>
                         
                       <td>{{ tender.tender_id }}</td>
-                      <td>{{ tender.files }}</td>
-                      <td>{{ tender.online_payment }}</td>
+                      <td><a href="{{ tender.files }}" target="_blank">link</a></td>
+                      <td><a href="{{ tender.online_payment }}" target="_blank">link</a></td>
                       <td>
                         <a href="{{ tender.url }}" target="_blank">link</a>
                       </td>
