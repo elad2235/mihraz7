@@ -7,7 +7,7 @@ def contact_us(request):
 		form = contactForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return render(request, 'account/homePage.html', {'form': form})
+			return render(request, 'contact/contact-us.html', {'form': form, 'message': 'Thanks for contacting us!'})
 		else:
 			return render(request, 'contact/contact-us.html', {'form': form})
 	else:
