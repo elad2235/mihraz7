@@ -69,7 +69,7 @@ class TestingTendersIntegration(unittest.TestCase):
         Tender.objects.filter(tender_name='_test_').delete()
 
     def test_connect_comment_disconnect(self):
-        #Login -> comment on a tender -> disconnect
+        # Login -> comment on a tender -> disconnect
         client = Client()
         # Login Stage
         client.post('/login/', {'username': 'TestMe', 'password': '1342'}, follow=True)
@@ -91,7 +91,7 @@ class TestingTendersIntegration(unittest.TestCase):
         Comment.objects.filter(comment_content='_test_test').delete()
 
     def test_search_form_open_tender(self):
-        #Login -> switch to open tenders -> use search form -> logout
+        # Login -> switch to open tenders -> use search form -> logout
         client = Client()
         # Login Stage
         client.post('/login/', {'username': 'TestMe', 'password': '1342'}, follow=True)

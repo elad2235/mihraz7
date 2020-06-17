@@ -19,7 +19,7 @@ class TestingTendersOffersIntegration(unittest.TestCase):
         Tender.objects.filter(tender_name='test').delete()
 
     def test_new_tender_submit_offer_cancel_offer(self):
-        #Test tender functions -> submit offer -> cancel offer
+        # Test tender functions -> submit offer -> cancel offer
         tender_instance = Tender.objects.create(tender_name='Tender1', tender_id='1234', winner='test1', files='file', online_payment='yes', url='test.com', end_date='2020-05-17', update_date='2020-05-14')
         tender_instance.save()
         retrieve_t = Tender.objects.get(tender_name='Tender1')
