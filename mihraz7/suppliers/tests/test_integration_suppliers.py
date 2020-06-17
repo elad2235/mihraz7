@@ -8,6 +8,7 @@ from suppliers.models import Supplier
 
 class TestingSuppliersIntegration(unittest.TestCase):
     def test_add_delete_supplier(self):
+        # test add and delete Functions
         supplier_instance = Supplier.objects.create(Supplier_name='Test1', Supplier_id='123', Service='testing')
         supplier_instance.save()
         retrieve = Supplier.objects.get(Supplier_name='Test1')

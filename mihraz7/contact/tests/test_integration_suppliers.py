@@ -8,6 +8,7 @@ from contact.models import contact
 
 class TestingContactIntegration(unittest.TestCase):
     def test_add_delete_contact(self):
+        # Test Add and delete Functions
         contact_instance = contact.objects.create(Name='Test1', Email='Test@test.com', Subject='testing', Message='Hello', date='2020-05-17')
         contact_instance.save()
         retrieve = contact.objects.get(Name='Test1')

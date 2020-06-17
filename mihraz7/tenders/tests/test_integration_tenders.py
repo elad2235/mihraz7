@@ -12,6 +12,7 @@ django.setup()
 
 class TestingTendersIntegration(unittest.TestCase):
     def test_add_delete_tender(self):
+        # test add and delete functions
         tender_instance = Tender.objects.create(tender_name='Tender111', tender_id='1234', winner='test1', files='file', online_payment='yes', url='test.com', end_date='2020-05-17', update_date='2020-05-14')
         tender_instance.save()
         retrieve = Tender.objects.get(tender_name='Tender111')
@@ -22,6 +23,7 @@ class TestingTendersIntegration(unittest.TestCase):
 
 # Sprint 3 Revisioned:
     def test_connect_apply_disconnect(self):
+        # Login -> apply for a tender form -> disconnect
         client = Client()
         #  Login Stage
         client.post('/login/', {'username': 'TestMe', 'password': '1342'}, follow=True)
@@ -42,6 +44,7 @@ class TestingTendersIntegration(unittest.TestCase):
         Tender.objects.filter(tender_name='_test_').delete()
 
     def test_connect_apply_cancel_disconnect(self):
+        # login -> apply for a tender -> logout
         client = Client()
         # Login Stage
         client.post('/login/', {'username': 'TestMe', 'password': '1342'}, follow=True)
@@ -66,6 +69,7 @@ class TestingTendersIntegration(unittest.TestCase):
         Tender.objects.filter(tender_name='_test_').delete()
 
     def test_connect_comment_disconnect(self):
+        #Login -> comment on a tender -> disconnect
         client = Client()
         # Login Stage
         client.post('/login/', {'username': 'TestMe', 'password': '1342'}, follow=True)
@@ -87,6 +91,7 @@ class TestingTendersIntegration(unittest.TestCase):
         Comment.objects.filter(comment_content='_test_test').delete()
 
     def test_search_form_open_tender(self):
+        #Login -> switch to open tenders -> use search form -> logout
         client = Client()
         # Login Stage
         client.post('/login/', {'username': 'TestMe', 'password': '1342'}, follow=True)

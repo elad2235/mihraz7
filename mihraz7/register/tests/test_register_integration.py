@@ -9,6 +9,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'mihraz7.settings'
 
 class TestingAccountsIntegration(unittest.TestCase):
     def test_register_login(self):
+        # test register login
         account_instance = Account.objects.create_user(email='test_@test.com', username='test_', first_name='tes', last_name='ting', phone='111111111', password='testtest')
         account_instance.save()
         retrieve = Account.objects.get(username='test_')
@@ -18,6 +19,7 @@ class TestingAccountsIntegration(unittest.TestCase):
         retrieve.delete()
 
     def test_register_login_custom_function_disconnect(self):
+        # test register Function -> login -> disconnect
         account_instance = Account.objects.create_user(email='test_@test.com', username='test_', first_name='tes', last_name='ting', phone='111111111', password='testtest')
         account_instance.save()
         retrieve = Account.objects.get(username='test_')
@@ -31,6 +33,7 @@ class TestingAccountsIntegration(unittest.TestCase):
 
 # Sprint 3 Revisioned:
     def test_register_form_login_disconnect(self):
+        # Test registration form -> login with new user -> disconnect from system
         # Registration and Login stage
         client = Client()
         response = client.post('/register/', {'username': 'test_', 'password1': 'jy9vq7sqWPpMCLAD5Cof', 'password2': 'jy9vq7sqWPpMCLAD5Cof', 'phone': '2235', 'first_name': '_test_', 'last_name': '_test_', 'email': '_test_@test.com'}, follow=True)
